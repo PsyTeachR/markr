@@ -57,6 +57,7 @@ category_table <- function(marks, cols, cats = NULL, symbol = "*",
   if (kable) {
     kableExtra::kable(cat_table,
       align = c("l", rep("c", length(catcols))),
+      row.names = FALSE,
       ...
     ) %>%
       kableExtra::kable_styling(

@@ -1,4 +1,4 @@
-# markr <img src="reference/figures/markr_hex.png" align="right" alt="" width="120" />
+# markr <img src="man/figures/markr_hex.png" align="right" alt="" width="120" />
 
 <!-- rmarkdown v1 -->
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -13,10 +13,10 @@ The goal of markr is to create individual feedback documents and marking summari
 
 ## Installation
 
-You can install the released version of markr from Github with:
+You can install the released version of markr from GitHub with:
 
 ``` r
-remotes::install_gitgub("psyteachr/markr")
+remotes::install_github("psyteachr/markr")
 ```
 
 ## Quick Start

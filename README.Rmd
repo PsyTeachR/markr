@@ -26,10 +26,10 @@ The goal of markr is to create individual feedback documents and marking summari
 
 ## Installation
 
-You can install the released version of markr from Github with:
+You can install the released version of markr from GitHub with:
 
 ``` r
-remotes::install_gitgub("psyteachr/markr")
+remotes::install_github("psyteachr/markr")
 ```
 
 ## Quick Start
