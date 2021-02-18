@@ -4,7 +4,14 @@
 \alias{make_feedback}
 \title{Create Feedback Reports}
 \usage{
-make_feedback(marks, template, filename = NULL, group_by = NULL, quiet = FALSE)
+make_feedback(
+  marks,
+  template,
+  filename = NULL,
+  group_by = NULL,
+  filter_by = NULL,
+  quiet = FALSE
+)
 }
 \arguments{
 \item{marks}{data frame of marks or path to file}
@@ -14,6 +21,8 @@ make_feedback(marks, template, filename = NULL, group_by = NULL, quiet = FALSE)
 \item{filename}{path to save files, defaults to "feedback/[group_by columns]", but you can reference any column names inside square brackets (e.g., "assignment_[moodle_id]_/[Student ID]")}
 
 \item{group_by}{columns to group by (e.g., if the marking file contains multiple rows per student) defaults to grouping by row if NULL}
+
+\item{filter_by}{optional vector for filtering, e.g. c(ID = 1) or c(question = "A")}
 
 \item{quiet}{print a message for each rendering}
 }

@@ -43,7 +43,10 @@ Suggests:
     shiny,
     shinydashboard,
     shinyjs,
-    DT
+    DT,
+    ukbabynames,
+    stringr,
+    tools
 Depends: 
     R (>= 2.10)
 URL: https://github.com/psyteachr/markr

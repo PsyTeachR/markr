@@ -2,3 +2,12 @@ ul.sidebar-menu {
   font-size: 1.2em;
 }
 
+#template_text {
+  font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+}
+
+#test_output {
+  border: 2px solid grey;
+  background-color: white;
+}
+

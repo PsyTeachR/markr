@@ -6,6 +6,7 @@
 #' @param template path to the .Rmd template file for feedback
 #' @param filename path to save files, defaults to "feedback/\[group_by columns\]", but you can reference any column names inside square brackets (e.g., "assignment_\[moodle_id\]_/\[Student ID\]")
 #' @param group_by columns to group by (e.g., if the marking file contains multiple rows per student) defaults to grouping by row if NULL
+#' @param filter_by optional vector for filtering, e.g. c(ID = 1) or c(question = "A")
 #' @param quiet print a message for each rendering
 #'
 #' @return NULL
@@ -17,7 +18,8 @@
 #' make_feedback(demo_marks, "template.Rmd", "fb/[ID]/exam_Q[question]", "ID")
 #' }
 
-make_feedback <- function(marks, template, filename = NULL, group_by = NULL, quiet = FALSE) {
+make_feedback <- function(marks, template, filename = NULL, 
+                          group_by = NULL, filter_by = NULL, quiet = FALSE) {
   if (!file.exists(template)) {
     stop("The file ", template, " does not exist")
   }
@@ -27,6 +29,14 @@ make_feedback <- function(marks, template, filename = NULL, group_by = NULL, qui
       stop("The file ", marks, " does not exist")
     }
     marks <- rio::import(marks)
+  }
+  
+  # filter marks
+  if (!is.null(filter_by) && all(names(filter_by) %in% names(marks))) {
+    for (i in seq_along(filter_by)) {
+      keep <- marks[[names(filter_by[i])]] == filter_by[i]
+      marks <- marks[keep, , drop = FALSE]
+    }
   }
 
   if (is.null(group_by)) {

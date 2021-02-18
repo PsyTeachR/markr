@@ -12,10 +12,12 @@ test_that("errors", {
 })
 
 test_that("default", {
+  skip_on_cran()
+  
   wd <- getwd()
   on.exit(setwd(wd))
   setwd(tdir)
-  fbdir <- paste0(tdir, "/feedback")
+  fbdir <- file.path(tdir, "feedback")
 
   demo_marks$grade <- "A"
   op <- capture.output(
@@ -32,6 +34,8 @@ test_that("default", {
 })
 
 test_that("filename", {
+  skip_on_cran()
+  
   fbdir <- paste0(tdir, "/fb")
   filename = paste0(fbdir, "/[ID]")
   demo_marks$grade <- "A"
@@ -50,6 +54,8 @@ test_that("filename", {
 
 
 test_that("tibble", {
+  skip_on_cran()
+  
   fbdir <- paste0(tdir, "/fb")
   filename = paste0(fbdir, "/[ID].html")
   dm <- tibble::as_tibble(demo_marks)
@@ -64,5 +70,25 @@ test_that("tibble", {
   expect_true(file.exists(paste0(tdir, "/fb/S4.html")))
   expect_true(file.exists(paste0(tdir, "/fb/S5.html")))
 
+  if (dir.exists(fbdir)) unlink(fbdir, recursive = TRUE)
+})
+
+
+test_that("filter", {
+  skip_on_cran()
+  
+  fbdir <- file.path(tdir, "fb")
+  filename = file.path(fbdir, "[ID]")
+  demo_marks$grade <- "A"
+  op <- capture.output(
+    make_feedback(demo_marks, temp, filename, filter_by = c(ID = "S2"))
+  )
+  
+  expect_true(!file.exists(file.path(tdir, "fb/S1.html")))
+  expect_true(file.exists(file.path(tdir, "fb/S2.html")))
+  expect_true(!file.exists(file.path(tdir, "fb/S3.html")))
+  expect_true(!file.exists(file.path(tdir, "fb/S4.html")))
+  expect_true(!file.exists(file.path(tdir, "fb/S5.html")))
+  
   if (dir.exists(fbdir)) unlink(fbdir, recursive = TRUE)
 })

@@ -10,7 +10,8 @@
 #' \dontrun{ markr_app() }
 #'
 markr_app <- function(...) {
-  pckgs <- c("shiny", "shinydashboard", "shinyjs", "DT")
+  pckgs <- c("shiny", "shinydashboard", "shinyjs", "DT", 
+             "ukbabynames", "stringr", "tools")
   names(pckgs) <- pckgs
   req_pckgs <- sapply(pckgs, requireNamespace, quietly = TRUE)
   

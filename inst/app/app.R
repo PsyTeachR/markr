@@ -4,94 +4,46 @@ suppressPackageStartupMessages({
     library(shinyjs)
     library(shinydashboard)
     library(DT)
+    library(dplyr)
     library(yaml)
     library(rio)
+    library(ukbabynames)
+    library(stringr)
+    library(markr)
 })
 
 ## functions ----
-
-tbl2yaml <- function(tbl) {
-    utils::type.convert(tbl, as.is = TRUE) %>%
-        yaml::as.yaml(column.major = FALSE) %>%
-        gsub(": .na\n", ": \n", ., fixed = TRUE) %>%
-        gsub("'(#[^\n]*)'\n", "\\1\n", .)
-}
-
-
-# source("R/func.R") # put long functions in external files
-
-# display debugging messages in R if local,
-# or in the console log if remote
-debug_msg <- function(...) {
-    is_local <- Sys.getenv('SHINY_PORT') == ""
-    txt <- paste(...)
-    if (is_local) {
-        message(txt)
-    } else {
-        shinyjs::logjs(txt)
-    }
-}
+source("R/func.R")
 
 ## tabs ----
 
 # you can put complex tabs in separate files and source them
-#source("ui/main_tab.R")
-#source("ui/info_tab.R")
-
-main_tab <- tabItem(
-    tabName = "main_tab",
-    h2("Main")
-)
-
-yaml_tab <- tabItem(
-    tabName = "yaml_tab",
-    h2("YAML"),
-    fileInput("tbl_file", "Load Table", width = "100%"),
-    fluidRow(
-        column(4, actionButton("add_col", NULL, icon("plus")),
-               actionButton("delete_col", NULL, icon("minus")),
-               actionButton("rename_col", "Rename")
-        ),
-        column(4, selectizeInput("col_name", NULL, c(), multiple = TRUE,
-                                 options = list(create = TRUE))),
-        column(4, textInput("col_val", NULL, placeholder = "Column value/new name"))
-
-    ),
-    downloadButton("dl_yaml", "Download YAML"),
-    verbatimTextOutput("yaml_text")
-)
-
-
-# if the header and/or sidebar get too complex,
-# put them in external files and uncomment below
-# source("ui/header.R") # defines the `header`
-# source("ui/sidebar.R") # defines the `sidebar`
-
+source("ui/data_tab.R")
+source("ui/temp_tab.R")
 
 ## UI ----
 ui <- dashboardPage(
     skin = "red",
-    # header, # if sourced above
-    # sidebar, # if sourced above
     dashboardHeader(title = "MarkR"),
     dashboardSidebar(
         # https://fontawesome.com/icons?d=gallery&m=free
         sidebarMenu(
             id = "tabs",
-            #menuItem("Main", tabName = "main_tab",
-            #         icon = icon("home")),
-            menuItem("YAML", tabName = "yaml_tab",
-                     icon = icon("table"))
-        )
+            menuItem("Data", tabName = "data_tab",
+                     icon = icon("table")),
+            menuItem("Template", tabName = "temp_tab",
+                     icon = icon("file-alt"))
+        ),
+        actionButton("reset", "Reset")
     ),
     dashboardBody(
         shinyjs::useShinyjs(),
         tags$head(
-            tags$link(rel = "stylesheet", type = "text/css", href = "custom.css") # links to www/custom.css
+            tags$link(rel = "stylesheet", type = "text/css", href = "custom.css") 
         ),
         tabItems(
-            #main_tab,
-            yaml_tab
+            data_tab,
+            temp_tab
         )
     )
 )
@@ -99,40 +51,84 @@ ui <- dashboardPage(
 
 ## server ----
 server <- function(input, output, session) {
-    tbl <- reactiveVal(data.frame())
-    filename <- reactiveVal("file")
+    tbl <- reactiveVal(demo_tbl())
+    filename <- reactiveVal("demo")
+    
+    observeEvent(input$reset, { # reset ----
+        debug_msg("reset")
+        
+        filename("demo")
+        tbl(demo_tbl())
+        
+        updateTextAreaInput(session, "template_text", value = template_text)
+        output$test_output <- renderUI("")
+    })
+    
+    observeEvent(input$tbl_yml_switch, { # tbl_yml_switch ----
+        debug_msg("tbl_yml_switch:", input$tbl_yml_switch)
+        
+        if (input$tbl_yml_switch == "table") {
+            show("tbl")
+            hide("yml")
+        } else {
+            show("yml");
+            hide("tbl")
+        }
+    })
+    
+    # update selectize with col names ----
+    observe({
+        debug_msg("update col_name/group_by")
+        updateSelectizeInput(session, "col_name", choices = names(tbl()))
+        updateSelectizeInput(session, "group_by", choices = names(tbl()))
+    })
 
-    observeEvent(input$tbl_file, {
-        debug_msg("tbl_file")
+    observeEvent(input$tbl_file, { # tbl_file ----
+        debug_msg("tbl_file:", input$tbl_file$name)
 
         path <- input$tbl_file$datapath
-        filename(input$tbl_file$name)
-        debug_msg(path)
+        fname <- tools::file_path_sans_ext(input$tbl_file$name)
+        ext <- tools::file_ext(input$tbl_file$name)
+        filename(fname)
 
         x <- tryCatch({
-            rio::import(path)
+            if (ext == "yml") {
+                markr::read_marks(yaml = path)
+            } else {
+                rio::import(path)
+            }
         }, error = function(e) {
             shinyjs::alert(e$message)
             return(data.frame())
         })
 
-        updateSelectizeInput(session, "col_name", choices = names(x))
-
         tbl(x)
     }, ignoreNULL = TRUE)
 
-    output$yaml_text <- renderText({
-        tbl2yaml(tbl())
+    output$yml <- renderText({ # yml ----
+        markr::tbl2yaml(tbl(), open = FALSE)
     })
+    
+    output$tbl <- renderDT({ # tbl ----
+        tbl()
+    }, rownames = FALSE,)
 
-    output$dl_yaml <- downloadHandler(
+    output$dl_tbl <- downloadHandler( #dl_tbl ----
         filename = function() {
-            debug_msg("dl_yaml")
-            paste0(filename(), ".yml")
+            debug_msg("dl_tbl")
+            if (input$tbl_yml_switch == "yaml") {
+              paste0(filename(), ".yml")
+            } else {
+              paste0(filename(), ".xlsx")
+            }
         },
         content = function(file) {
-            txt <- tbl2yaml(tbl())
-            write(txt, file)
+            if (input$tbl_yml_switch == "yaml") {
+                txt <- markr::tbl2yaml(tbl(), open = FALSE)
+                write(txt, file)
+            } else {
+                rio::export(tbl(), file)
+            }
         }
     )
 
@@ -146,7 +142,6 @@ server <- function(input, output, session) {
         }
         tbl(t)
         updateTextInput(session, "col_val", value = "")
-        updateSelectizeInput(session, "col_name", choices = names(t))
     })
 
     # delete_col ----
@@ -157,7 +152,6 @@ server <- function(input, output, session) {
             t[n] <- NULL
         }
         tbl(t)
-        updateSelectizeInput(session, "col_name", choices = names(t))
     })
 
     # rename_col ----
@@ -167,11 +161,115 @@ server <- function(input, output, session) {
         newname <- trimws(input$col_val)
         if (newname == "") return()
         if (oldname == "") return()
-        t <- dplyr::rename(tbl(), !!newname := oldname)
+        t <- dplyr::rename(tbl(), !!newname := dplyr::all_of(oldname))
         tbl(t)
         updateTextInput(session, "col_val", value = "")
-        updateSelectizeInput(session, "col_name", choices = names(t))
     })
+    
+    # reorder_col ----
+    observeEvent(input$reorder_col, {
+        debug_msg("reorder_col: ", input$col_name)
+        t <- tbl()
+        if (!all(input$col_name %in% names(t))) return()
+        
+        new_order <- c(input$col_name, setdiff(names(t), input$col_name))
+        tbl(t[new_order])
+    })
+    
+    observeEvent(input$temp_file, { # temp_file ----
+        debug_msg("temp_file:", input$temp_file$name)
+        
+        tryCatch({
+            temp_txt <- readLines(input$temp_file$datapath) %>%
+                paste(collapse = "\n")
+            updateTextAreaInput(session, "template_text", value = temp_txt)
+        }, error = function(e) {
+            shinyjs::alert(e$message)
+        })
+        
+    }, ignoreNULL = TRUE)
+    
+    observeEvent(input$test_render, { # test_render ----
+        debug_msg("test_render")
+        
+        template_file <- tempfile(fileext = ".Rmd")
+        write(input$template_text, template_file)
+        save_file <- tempfile(fileext = ".html")
+        
+        test_html <- tryCatch({
+            marks <- tbl()
+            
+            if (length(input$group_by) == 0) {
+                gb <- 1:nrow(marks)
+            } else {
+                gb <- marks[, input$group_by]
+            }
+            x <- by(marks, gb, function(ind) { ind })
+            ind <- sample(x, 1)[[1]]
+    
+            options(knitr.duplicate.label = 'allow')
+            rmarkdown::render(template_file,
+                              output_file = save_file,
+                              intermediates_dir = tempdir(),
+                              quiet = TRUE,
+                              envir = new.env(),
+                              encoding = "UTF-8")
+            
+            readLines(save_file) %>% 
+                paste(collapse = "\n") %>%
+                HTML()
+        }, error = function(e) {
+            shinyjs::alert(e)
+            
+            return ("")
+        })
+        
+        output$test_output <- renderUI(test_html)
+        
+        if (test_html != "") updateTabsetPanel(session, "temp_tabset", selected = "html_output")
+        invisible()
+    })
+    
+    output$dl_rmd <- downloadHandler( #dl_rmd ----
+        filename = function() {
+            debug_msg("dl_rmd")
+            "template.Rmd"
+        },
+        content = function(file) {
+            write(input$template_text, file)
+        }
+    )
+    
+    output$dl_all <- downloadHandler( #dl_all ----
+        filename = function() {
+            debug_msg("dl_all")
+            "feedback.zip"
+        },
+        content = function(file) {
+            my_wd<-getwd()
+            on.exit(setwd(my_wd))
+            
+            template_file <- tempfile(fileext = ".Rmd")
+            write(input$template_text, template_file)
+
+            tryCatch({
+                dir_path <- file.path(tempdir(), "fb")
+                if (dir.exists(dir_path)) unlink(dir_path, TRUE)
+                dir.create(dir_path)
+                setwd(dir_path)
+                
+                markr::make_feedback(tbl(), 
+                                     template_file,
+                                     input$custom_filename, 
+                                     input$group_by)
+                
+                setwd(tempdir())
+                utils::zip(file, "fb")
+            }, error = function(e) {
+                shinyjs::alert(e)
+            })
+        }
+    )
 
 }
 
