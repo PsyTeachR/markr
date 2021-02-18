@@ -1,0 +1,18 @@
+#' Demo marking sheet
+#'
+#' A dataset containing a demo marking sheet
+#'
+#' @format A data frame with 5 rows and 9 variables:
+#' \describe{
+#'   \item{ID}{student ID code}
+#'   \item{name}{student name}
+#'   \item{marker}{instructor who did the marking}
+#'   \item{question}{whether the student answered question A or B}
+#'   \item{KR}{mark for Knowledge and Research}
+#'   \item{CE}{mark for Critical Evaluation}
+#'   \item{AC}{mark for Academic Communication}
+#'   \item{mark}{overall numeric mark}
+#'   \item{feedback}{individual feedback text}
+#'
+#' }
+"demo_marks"

@@ -1,0 +1,100 @@
+---
+title: "markr demo"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
+library(markr)
+```
+
+## Read data
+
+```{r}
+# all data in one table (csv or excel)
+marks <- read_marks("marks_fb.csv")
+
+# all data in one YAML file
+# marks <- read_marks(yaml = "marks_fb.yml")
+
+# or join data from table and YAML
+# marks <- read_marks("marks.csv", "fb.yml", "ID")
+```
+
+You can do some optional further data processing. For example, the marks table had a column called `mark` with the numeric mark, but the feedback template needs a column called `grade` with the letter grade. The function `convert_grades()` defaults to the Glasgow 22-point scale, but you can define your own scale.
+
+```{r}
+scale <- data.frame(
+  numbers = 4:0,
+  letters = c("A", "B", "C", "D", "E")
+)
+marks$grade <- convert_grades(marks$mark, "letter", scale)
+```
+
+
+## Create feedback files
+
+The following code creates a feedback file for each row in the marks file. It uses the template.Rmd file to create the feedback and saves the files in a folder called "fb" with a filename made from the `ID` and `name` columns of the data.
+
+Each feedback file will have the same image, so we can greatly speed up rendering time by creating the image once, saving it to a file, and adding the image to the template using `knitr::include_graphics()`, instead of calling the `mark_dist()` function for each feedback sheet.
+
+```{r}
+# make and save any images that will be in all files
+class_plot <- mark_dist(marks, "grade", facet_by = "question", 
+          scale = c("E", "D", "C", "B", "A"))
+ggplot2::ggsave("class_plot.png")
+
+# render the feedback files
+make_feedback(
+  marks = marks,
+  template = "template.Rmd",
+  filename = "fb/[ID]_[name].html"
+)
+```
+
+## Summary Plots
+
+Plot the mark column with `mark_dist()`. Set the `scale` manually to show all categories in the scale.
+
+```{r}
+mark_dist(marks, "mark", scale = 0:5)
+```
+
+You can facet the marks by any categorical columns.
+
+```{r}
+mark_dist(marks, "grade", facet_by = "question", 
+          scale = c("E", "D", "C", "B", "A"))
+```
+
+You can also show a plot of individual criteria categories. For example, the demo data has three columns for Knowledge and Research (KR), Critical Evaluation (CE), and Academic Communication (AC). Each criterion is given a category 1-4, which correspond to "Needs Work", "Acceptable", "Good", and "Outstanding". You have to set up the list of columns and categories like below.
+
+```{r}
+#cols <- c("KR", "CE", "AC") # no translation
+cols <- c(
+  "KR" = "Knowledge and Research",
+  "CE" = "Critical Evaluation",
+  "AC" = "Academic Communication"
+)
+
+#cats <- 1:4 # no translation
+cats <- c(
+  "1" = "Needs Work",
+  "2" = "Acceptable",
+  "3" = "Good",
+  "4" = "Outstanding"
+)
+```
+
+The default plot has the criteria columns across the x-axis and the categories represented by colours. You can facet the plot by any columns in the table.
+
+```{r}
+cat_dist(marks, cols, cats, facet_by = "question")
+```
+
+Alternatively, you can set `xaxis = "cat"` to display the categories across the x-axis and facet by criteria in addition to any other columns.
+
+```{r}
+cat_dist(marks, cols, cats, xaxis = "cat", facet_by = "question")
+```
+

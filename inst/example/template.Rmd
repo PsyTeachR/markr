@@ -1,0 +1,69 @@
+---
+title: "Feedback"  
+date: "`r format(Sys.time(), '%d %B, %Y')`"  
+output: html_document  
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+library(markr)
+```
+
+```{r, eval=F}
+# set eval=T to knit this example for debugging
+marks <- demo_marks  # load your data as marks
+ind <- marks[1, ]    # selects just the first row
+```
+
+**Student**: `r ind$name` (`r ind$ID`)  
+**Marker**: `r ind$marker`  
+**Grade**: `r ind$grade`
+
+You answered question `r ind$question`.
+
+## Categories
+
+```{r, results='asis'}
+cols <- list(
+  "KR" = "Knowledge and Research",
+  "CE" = "Critical Evaluation",
+  "AC" = "Academic Communication"
+)
+cats <- list(
+  "1" = "Needs Work",
+  "2" = "Acceptable",
+  "3" = "Good",
+  "4" = "Outstanding"
+)
+
+category_table(ind, cols, cats)
+```
+
+## Individual Feedback
+
+`r ind$feedback`
+
+## Generic Feedback
+
+Text to be included in every feedback file.
+
+* You can use markdown
+* To create lists
+
+```{r}
+# you can create plots dynamically
+# mark_dist(marks, "grade", facet_by = "question", 
+#           scale = c("E", "D", "C", "B", "A"))
+
+# if the same images are used in many files 
+# it is better to save them and reference like this:
+knitr::include_graphics("class_plot.png")
+```
+
+
+![](https://psyteachr.github.io/images/psyTeachR_logo.png)
+
+
+
