@@ -171,7 +171,6 @@ category_table(ind, cols = c("KR", "CE", "AC"), cats = 1:4)
 <table class="table" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
-   <th style="text-align:left;">   </th>
    <th style="text-align:left;"> Criteria </th>
    <th style="text-align:center;"> 1 </th>
    <th style="text-align:center;"> 2 </th>
@@ -181,28 +180,25 @@ category_table(ind, cols = c("KR", "CE", "AC"), cats = 1:4)
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;width: 52%; "> 3 </td>
-   <td style="text-align:left;width: 12%; "> KR </td>
+   <td style="text-align:left;width: 52%; "> KR </td>
    <td style="text-align:center;width: 12%; ">  </td>
-   <td style="text-align:center;width: 12%; ">  </td>
-   <td style="text-align:center;width: 12%; ">  </td>
-   <td style="text-align:center;"> * </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;width: 52%; "> 2 </td>
-   <td style="text-align:left;width: 12%; "> CE </td>
    <td style="text-align:center;width: 12%; ">  </td>
    <td style="text-align:center;width: 12%; ">  </td>
    <td style="text-align:center;width: 12%; "> * </td>
-   <td style="text-align:center;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;width: 52%; "> 1 </td>
-   <td style="text-align:left;width: 12%; "> AC </td>
+   <td style="text-align:left;width: 52%; "> CE </td>
+   <td style="text-align:center;width: 12%; ">  </td>
    <td style="text-align:center;width: 12%; ">  </td>
    <td style="text-align:center;width: 12%; "> * </td>
    <td style="text-align:center;width: 12%; ">  </td>
-   <td style="text-align:center;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 52%; "> AC </td>
+   <td style="text-align:center;width: 12%; ">  </td>
+   <td style="text-align:center;width: 12%; "> * </td>
+   <td style="text-align:center;width: 12%; ">  </td>
+   <td style="text-align:center;width: 12%; ">  </td>
   </tr>
 </tbody>
 </table>
@@ -229,7 +225,6 @@ category_table(ind, cols, cats, symbol = "✅")
 <table class="table" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
-   <th style="text-align:left;">   </th>
    <th style="text-align:left;"> Criteria </th>
    <th style="text-align:center;"> Needs Work </th>
    <th style="text-align:center;"> Acceptable </th>
@@ -239,28 +234,25 @@ category_table(ind, cols, cats, symbol = "✅")
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;width: 52%; "> 3 </td>
-   <td style="text-align:left;width: 12%; "> Knowledge and Research </td>
+   <td style="text-align:left;width: 52%; "> Knowledge and Research </td>
    <td style="text-align:center;width: 12%; ">  </td>
-   <td style="text-align:center;width: 12%; ">  </td>
-   <td style="text-align:center;width: 12%; ">  </td>
-   <td style="text-align:center;"> ✅ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;width: 52%; "> 2 </td>
-   <td style="text-align:left;width: 12%; "> Critical Evaluation </td>
    <td style="text-align:center;width: 12%; ">  </td>
    <td style="text-align:center;width: 12%; ">  </td>
    <td style="text-align:center;width: 12%; "> ✅ </td>
-   <td style="text-align:center;">  </td>
   </tr>
   <tr>
-   <td style="text-align:left;width: 52%; "> 1 </td>
-   <td style="text-align:left;width: 12%; "> Academic Communication </td>
+   <td style="text-align:left;width: 52%; "> Critical Evaluation </td>
+   <td style="text-align:center;width: 12%; ">  </td>
    <td style="text-align:center;width: 12%; ">  </td>
    <td style="text-align:center;width: 12%; "> ✅ </td>
    <td style="text-align:center;width: 12%; ">  </td>
-   <td style="text-align:center;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 52%; "> Academic Communication </td>
+   <td style="text-align:center;width: 12%; ">  </td>
+   <td style="text-align:center;width: 12%; "> ✅ </td>
+   <td style="text-align:center;width: 12%; ">  </td>
+   <td style="text-align:center;width: 12%; ">  </td>
   </tr>
 </tbody>
 </table>
