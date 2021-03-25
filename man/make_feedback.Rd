@@ -10,7 +10,8 @@ make_feedback(
   filename = NULL,
   group_by = NULL,
   filter_by = NULL,
-  quiet = FALSE
+  quiet = FALSE,
+  ...
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ make_feedback(
 \item{filter_by}{optional vector for filtering, e.g. c(ID = 1) or c(question = "A")}
 
 \item{quiet}{print a message for each rendering}
+
+\item{...}{extra data to make available in the template file}
 }
 \description{
 \code{make_feedback} creates feedback files from a template .Rmd file

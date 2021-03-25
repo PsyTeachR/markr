@@ -1,4 +1,4 @@
-# markr <img src="man/figures/markr_hex.png" align="right" alt="" width="120" />
+# markr <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
 <!-- rmarkdown v1 -->
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -147,13 +147,13 @@ In the most typical case, where each student has one row in the spreadsheet, you
 <pre>
 ---  
 title: "Feedback"  
-date: "`r format(Sys.time(), '%d %B, %Y')`"  
+date: "&grave;r format(Sys.time(), '%d %B, %Y')&grave;"  
 output: html_document  
 ---
 
-**Student**: `r ind$name`  
-**Marker**: `r ind$marker`  
-**Grade**: `r ind$grade`
+**Student**: &grave;r ind$name&grave;  
+**Marker**: &grave;r ind$marker&grave;  
+**Grade**: &grave;r ind$grade&grave;
 
 </pre>
 

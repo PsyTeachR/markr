@@ -5,4 +5,5 @@
 ^docs$
 ^LICENSE.md$
 ^README.Rmd$
-^_pkgdown.yml$
+^README.html$
+^pkgdown$

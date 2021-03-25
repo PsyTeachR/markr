@@ -1,0 +1,14 @@
+home:
+  title: markr
+  description: Individual Feedback Documents from Spreadsheets.
+  strip_header: false
+  
+template:
+  opengraph:
+    image:
+      src: man/figures/card.png
+      alt: "Hexagon with the word markr"
+    twitter:
+      creator: "@lisadebruine"
+      site: "@psyteachr"
+      card: summary_large_image

@@ -21,7 +21,7 @@ test_that("default", {
 
   demo_marks$grade <- "A"
   op <- capture.output(
-    make_feedback(demo_marks, temp)
+    make_feedback(demo_marks, temp, class_name = "Demo Class")
   )
 
   expect_true(file.exists(paste0(tdir, "/feedback/1.html")))
@@ -40,7 +40,7 @@ test_that("filename", {
   filename = paste0(fbdir, "/[ID]")
   demo_marks$grade <- "A"
   op <- capture.output(
-    make_feedback(demo_marks, temp, filename)
+    make_feedback(demo_marks, temp, filename, class_name = "Demo Class")
   )
 
   expect_true(file.exists(paste0(tdir, "/fb/S1.html")))
@@ -61,7 +61,7 @@ test_that("tibble", {
   dm <- tibble::as_tibble(demo_marks)
   dm$grade <- dm$mark
   op <- capture.output(
-    make_feedback(dm, temp, filename, "ID")
+    make_feedback(dm, temp, filename, "ID", class_name = "Demo Class")
   )
 
   expect_true(file.exists(paste0(tdir, "/fb/S1.html")))
@@ -81,7 +81,9 @@ test_that("filter", {
   filename = file.path(fbdir, "[ID]")
   demo_marks$grade <- "A"
   op <- capture.output(
-    make_feedback(demo_marks, temp, filename, filter_by = c(ID = "S2"))
+    make_feedback(demo_marks, temp, filename, 
+                  class_name = "Demo Class",
+                  filter_by = c(ID = "S2"))
   )
   
   expect_true(!file.exists(file.path(tdir, "fb/S1.html")))

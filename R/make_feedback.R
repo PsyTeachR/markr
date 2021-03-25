@@ -8,6 +8,7 @@
 #' @param group_by columns to group by (e.g., if the marking file contains multiple rows per student) defaults to grouping by row if NULL
 #' @param filter_by optional vector for filtering, e.g. c(ID = 1) or c(question = "A")
 #' @param quiet print a message for each rendering
+#' @param ... extra data to make available in the template file
 #'
 #' @return NULL
 #' @export
@@ -19,7 +20,9 @@
 #' }
 
 make_feedback <- function(marks, template, filename = NULL, 
-                          group_by = NULL, filter_by = NULL, quiet = FALSE) {
+                          group_by = NULL, filter_by = NULL, 
+                          quiet = FALSE, ...) {
+  # error checks ----
   if (!file.exists(template)) {
     stop("The file ", template, " does not exist")
   }
@@ -31,7 +34,7 @@ make_feedback <- function(marks, template, filename = NULL,
     marks <- rio::import(marks)
   }
   
-  # filter marks
+  # filter marks ----
   if (!is.null(filter_by) && all(names(filter_by) %in% names(marks))) {
     for (i in seq_along(filter_by)) {
       keep <- marks[[names(filter_by[i])]] == filter_by[i]
@@ -39,6 +42,7 @@ make_feedback <- function(marks, template, filename = NULL,
     }
   }
 
+  # group marks by row or group_by columns ----
   if (is.null(group_by)) {
     # group by row number
     marks$.rownumber. <- 1:nrow(marks)
@@ -49,6 +53,7 @@ make_feedback <- function(marks, template, filename = NULL,
     group_by <- which(names(marks) %in% group_by)
   }
 
+  # create filenames ----
   wd <- paste0(getwd(), "/")
 
   if (is.null(filename)) {
@@ -76,25 +81,32 @@ make_feedback <- function(marks, template, filename = NULL,
   if (grepl("\\[.+\\]", file_fmt)) {
     warning("The filename referenced a column that doesn't exist")
   }
+  
+  # knit feedback ----
 
   # prevent duplicate label problem when knitting from Rmd
   kdl <- getOption('knitr.duplicate.label')
   on.exit(options(knitr.duplicate.label = kdl))
   options(knitr.duplicate.label = "allow")
 
-  x <- by(marks, marks[, group_by], function(ind) {
+  x <- by(marks, marks[, group_by], function(student) {
     # get filename and create subdirs
-    fname <- c(list(file_fmt), ind[1, ]) %>%
+    fname <- c(list(file_fmt), student[1, ]) %>%
       do.call(sprintf, .)
     dir.create(dirname(fname),
                recursive = TRUE,
                showWarnings = FALSE)
+    
+    new_env <- new.env()
+    list2env(list(...), envir = new_env)
 
     systime <- system.time(
       rmarkdown::render(
         template,
         output_file = fname,
-        quiet = TRUE
+        quiet = TRUE,
+        intermediates_dir = tempdir(),
+        envir = new_env
       )
     )
     etime <- round(systime['elapsed'], 2)

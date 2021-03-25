@@ -1,4 +1,4 @@
-# markr <img src="man/figures/markr_hex.png" align="right" alt="" width="120" />
+# markr <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
 <!-- rmarkdown v1 -->
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -71,7 +71,7 @@ You will need to create a template Rmd file for individual feedback. You can get
 Each file will have two data objects available to it: 
 
 * `marks` (the whole marking spreadsheet) 
-* `ind` (the individual student's data)
+* `student` (the individual student's data)
 
 In the most typical case, where each student has one row in the spreadsheet, you can reference the student's data in code blocks or inline R like this:
 
@@ -82,22 +82,22 @@ date: "&grave;r format(Sys.time(), '%d %B, %Y')&grave;"
 output: html_document  
 ---
 
-**Student**: &grave;r ind$name&grave;  
-**Marker**: &grave;r ind$marker&grave;  
-**Grade**: &grave;r ind$grade&grave;
+**Student**: &grave;r student$name&grave;  
+**Marker**: &grave;r student$marker&grave;  
+**Grade**: &grave;r student$grade&grave;
 
 </pre>
 
 ### Category Tables
 
 ```{r, include = FALSE}
-ind <- filter(demo_marks, ID == "S2")
+student <- filter(demo_marks, ID == "S2")
 ```
 
 You can display a table of marks for specific criteria by specifying the column names (`cols`) for each criterion and the order that the categories should go in (`cats`).
 
 ```{r, results='asis'}
-category_table(ind, cols = c("KR", "CE", "AC"), cats = 1:4)
+category_table(student, cols = c("KR", "CE", "AC"), cats = 1:4)
 ```
 
 You can translate abbreviations used in the marking sheet like this:
@@ -115,7 +115,7 @@ cats <- list(
   "4" = "Outstanding"
 )
 
-category_table(ind, cols, cats, symbol = "✅")
+category_table(student, cols, cats, symbol = "✅")
 ```
 
 ### Create Feedback

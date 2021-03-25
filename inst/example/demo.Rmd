@@ -1,14 +1,22 @@
 ---
 title: "markr demo"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    df_print: kable
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE, out.width = "75%")
 library(markr)
 ```
 
 ## Read data
+
+You can read in all the data from a table format like CSV or Excel, or from a format called YAML. YAML is easier for giving paragraphs of feedback, but the formatting can be a little tricky.
+
+You can also combine data from tabular and YAML files, putting info like student IDs and category marks in a table and paragraphs of feedback in the YAML file.
 
 ```{r}
 # all data in one table (csv or excel)
@@ -21,6 +29,9 @@ marks <- read_marks("marks_fb.csv")
 # marks <- read_marks("marks.csv", "fb.yml", "ID")
 ```
 
+
+## Data processing 
+
 You can do some optional further data processing. For example, the marks table had a column called `mark` with the numeric mark, but the feedback template needs a column called `grade` with the letter grade. The function `convert_grades()` defaults to the Glasgow 22-point scale, but you can define your own scale.
 
 ```{r}
@@ -31,24 +42,81 @@ scale <- data.frame(
 marks$grade <- convert_grades(marks$mark, "letter", scale)
 ```
 
+## Edit the template
 
-## Create feedback files
+Open the file called `template.Rmd`. It is written in R Markdown. The main thing you need to know at first is how to use hash marks to create titles and subtitles (the more hash marks, the lower-level subtitle) and how to edit inline code.
 
-The following code creates a feedback file for each row in the marks file. It uses the template.Rmd file to create the feedback and saves the files in a folder called "fb" with a filename made from the `ID` and `name` columns of the data.
+### Inline code
 
-Each feedback file will have the same image, so we can greatly speed up rendering time by creating the image once, saving it to a file, and adding the image to the template using `knitr::include_graphics()`, instead of calling the `mark_dist()` function for each feedback sheet.
+The information for each individual student will be stored in a list called `student`, and you can reference each column like this: `student$id`. If the column names have spaces or special characters, you can use this format: `student[["ID Number"]]`.
+
+```{r, echo = FALSE}
+student <- marks[2, ]
+```
+
+To insert information from a column into the text, you use this format: 
+<!-- the next line makes this look correct when this document is knit to HTML -->
+<code>&grave;r student$marker&grave;</code> 
+<!-- the next line shows how it should look in the Rmd file -->
+(e.g., `r student$marker`).
+
+You can also reference other variables using inline code, as long as you add them to the `make_feedback()` function later. The title references the variable `class_name`.
+
+
+### Category Tables
+
+You can display a table of marks for specific criteria by specifying the column names (`cols`) for each criterion and the order that the categories should go in (`cats`).
+
+```{r}
+category_table(student, cols = c("KR", "CE", "AC"), cats = 1:4)
+```
+
+You can translate abbreviations used in the marking sheet like this:
+
+```{r}
+#cols <- c("KR", "CE", "AC") # no translation
+cols <- c(
+  "KR" = "Knowledge and Research",
+  "CE" = "Critical Evaluation",
+  "AC" = "Academic Communication"
+)
+
+#cats <- 1:4 # no translation
+cats <- c(
+  "1" = "Needs Work",
+  "2" = "Acceptable",
+  "3" = "Good",
+  "4" = "Outstanding"
+)
+
+category_table(student, cols, cats, symbol = "✅")
+```
+
+### Make static resources
+
+If each feedback file will have the same image, we can greatly speed up rendering time by creating the image once, saving it to a file, and adding the image to the template using `knitr::include_graphics()`, instead of creating the image in each feedback sheet.
+
+The function `mark_dist()` is provided for your convenience to quickly make grade plots, but you can use any images or plotting functions.
 
 ```{r}
 # make and save any images that will be in all files
-class_plot <- mark_dist(marks, "grade", facet_by = "question", 
+class_plot <- mark_dist(marks, "grade", 
           scale = c("E", "D", "C", "B", "A"))
-ggplot2::ggsave("class_plot.png")
 
+ggplot2::ggsave("class_plot.png", width = 5, height = 3)
+```
+
+## Create feedback files
+
+The following code creates a feedback file for each row in the marks file. It uses the template.Rmd file to create the feedback and saves the files in a folder called "fb" with a filename made from the `ID` and `name` columns of the data. The template uses a variable called `class_name`, so we also need to set that in the arguments.
+
+```{r}
 # render the feedback files
 make_feedback(
   marks = marks,
   template = "template.Rmd",
-  filename = "fb/[ID]_[name].html"
+  filename = "fb/[ID]_[name].html",
+  class_name = "Demo Class"
 )
 ```
 
@@ -67,24 +135,7 @@ mark_dist(marks, "grade", facet_by = "question",
           scale = c("E", "D", "C", "B", "A"))
 ```
 
-You can also show a plot of individual criteria categories. For example, the demo data has three columns for Knowledge and Research (KR), Critical Evaluation (CE), and Academic Communication (AC). Each criterion is given a category 1-4, which correspond to "Needs Work", "Acceptable", "Good", and "Outstanding". You have to set up the list of columns and categories like below.
-
-```{r}
-#cols <- c("KR", "CE", "AC") # no translation
-cols <- c(
-  "KR" = "Knowledge and Research",
-  "CE" = "Critical Evaluation",
-  "AC" = "Academic Communication"
-)
-
-#cats <- 1:4 # no translation
-cats <- c(
-  "1" = "Needs Work",
-  "2" = "Acceptable",
-  "3" = "Good",
-  "4" = "Outstanding"
-)
-```
+You can also show a plot of individual criteria categories. For example, the demo data has three columns for Knowledge and Research (KR), Critical Evaluation (CE), and Academic Communication (AC). Each criterion is given a category 1-4, which correspond to "Needs Work", "Acceptable", "Good", and "Outstanding". You have to set up the list of columns and categories like for [Category Tables](#Category_Tables) above.
 
 The default plot has the criteria columns across the x-axis and the categories represented by colours. You can facet the plot by any columns in the table.
 

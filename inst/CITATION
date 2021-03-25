@@ -2,12 +2,14 @@ citHeader("To cite markr in publications use:")
 
 citEntry(entry = "Manual",
   title        = "Individual Feedback Documents from Spreadsheets: {markr}",
-  author       = personList(as.person("Lisa DeBruine")),
+  author       = personList(person("Lisa", "DeBruine"),
+                            person("Helena", "Paterson"),
+                            person("Philip", "McAleer")),
   year         = "2021",
   url          = "https://psyteachr.github.io/markr/",
 
   textVersion  =
-  paste("Lisa DeBruine (2021).",
+  paste("Lisa DeBruine, Helena Paterson, Philip McAleer (2021).",
         "Individual Feedback Documents from Spreadsheets: markr.",
         "URL https://psyteachr.github.io/markr/.")
 )
