@@ -88,6 +88,15 @@ make_feedback <- function(marks, template, filename = NULL,
   kdl <- getOption('knitr.duplicate.label')
   on.exit(options(knitr.duplicate.label = kdl))
   options(knitr.duplicate.label = "allow")
+  
+  if (!quiet) {
+    pb <- progress::progress_bar$new(
+      format = "  rendering :what [:bar] :percent (:elapsed)",
+      total = nrow(marks), clear = FALSE)
+    pb$tick(len = 0, tokens = list(what = ""))
+    Sys.sleep(0.5) # hack to make the 0% bar show up
+    pb$tick(len = 0, tokens = list(what = ""))
+  }
 
   x <- by(marks, marks[, group_by], function(student) {
     # get filename and create subdirs
@@ -100,20 +109,20 @@ make_feedback <- function(marks, template, filename = NULL,
     new_env <- new.env()
     list2env(list(...), envir = new_env)
 
-    systime <- system.time(
-      rmarkdown::render(
-        template,
-        output_file = fname,
-        quiet = TRUE,
-        intermediates_dir = tempdir(),
-        envir = new_env
-      )
+    rmarkdown::render(
+      template,
+      output_file = fname,
+      quiet = TRUE,
+      intermediates_dir = tempdir(),
+      envir = new_env
     )
-    etime <- round(systime['elapsed'], 2)
+    
     if (!quiet) {
-      print(paste0(sub(wd, "", fname), " (", etime, " s)"))
+      pb$tick(len = nrow(student), 
+              tokens = list(what = paste0(sub(wd, "", fname))))
     }
   })
+  pb$terminate()
 
   invisible(TRUE)
 }

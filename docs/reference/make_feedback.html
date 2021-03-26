@@ -48,6 +48,11 @@
 
 <meta property="og:title" content="Create Feedback Reports — make_feedback" />
 <meta property="og:description" content="make_feedback creates feedback files from a template .Rmd file" />
+<meta property="og:image" content="/reference/figures/card.png" />
+<meta property="og:image:alt" content="Hexagon with the word markr" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content="@lisadebruine" />
+<meta name="twitter:site" content="@psyteachr" />
 
 
 
@@ -79,7 +84,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">markr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9003</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9000</span>
       </span>
     </div>
 
@@ -93,6 +98,9 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -124,7 +132,15 @@
     <p><code>make_feedback</code> creates feedback files from a template .Rmd file</p>
     </div>
 
-    <pre class="usage"><span class='fu'>make_feedback</span><span class='op'>(</span><span class='va'>marks</span>, <span class='va'>template</span>, filename <span class='op'>=</span> <span class='cn'>NULL</span>, group_by <span class='op'>=</span> <span class='cn'>NULL</span>, quiet <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>make_feedback</span><span class='op'>(</span>
+  <span class='va'>marks</span>,
+  <span class='va'>template</span>,
+  filename <span class='op'>=</span> <span class='cn'>NULL</span>,
+  group_by <span class='op'>=</span> <span class='cn'>NULL</span>,
+  filter_by <span class='op'>=</span> <span class='cn'>NULL</span>,
+  quiet <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -146,8 +162,16 @@
       <td><p>columns to group by (e.g., if the marking file contains multiple rows per student) defaults to grouping by row if NULL</p></td>
     </tr>
     <tr>
+      <th>filter_by</th>
+      <td><p>optional vector for filtering, e.g. c(ID = 1) or c(question = "A")</p></td>
+    </tr>
+    <tr>
       <th>quiet</th>
       <td><p>print a message for each rendering</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>extra data to make available in the template file</p></td>
     </tr>
     </table>
 

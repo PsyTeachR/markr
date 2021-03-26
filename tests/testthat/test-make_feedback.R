@@ -18,11 +18,16 @@ test_that("default", {
   on.exit(setwd(wd))
   setwd(tdir)
   fbdir <- file.path(tdir, "feedback")
+  
+  # make sure objects in global env not accessible 
+  class_name = "SHOULD NOT BE USED"
 
   demo_marks$grade <- "A"
   op <- capture.output(
     make_feedback(demo_marks, temp, class_name = "Demo Class")
   )
+  
+  #f1 <- paste0(tdir, "/feedback/1.html") %>% readLines()
 
   expect_true(file.exists(paste0(tdir, "/feedback/1.html")))
   expect_true(file.exists(paste0(tdir, "/feedback/2.html")))

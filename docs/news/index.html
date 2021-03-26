@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert Grades to Marks — convert_grades • markr</title>
+<title>Changelog • markr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,7 @@
 
 
 
-<meta property="og:title" content="Convert Grades to Marks — convert_grades" />
-<meta property="og:description" content="convert_grades convert letter grades to numeric marks" />
+<meta property="og:title" content="Changelog" />
 <meta property="og:image" content="/reference/figures/card.png" />
 <meta property="og:image:alt" content="Hexagon with the word markr" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -71,7 +70,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -123,52 +122,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert Grades to Marks</h1>
-    <small class="dont-index">Source: <a href='https://github.com/psyteachr/markr/blob/master/R/convert_grades.R'><code>R/convert_grades.R</code></a></small>
-    <div class="hidden name"><code>convert_grades.Rd</code></div>
+      <h1 data-toc-skip>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/psyteachr/markr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="ref-description">
-    <p><code>convert_grades</code> convert letter grades to numeric marks</p>
-    </div>
-
-    <pre class="usage"><span class='fu'>convert_grades</span><span class='op'>(</span><span class='va'>grades</span>, to <span class='op'>=</span> <span class='cn'>NA</span>, scale <span class='op'>=</span> <span class='fu'><a href='glasgow22.html'>glasgow22</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>grades</th>
-      <td><p>vector of letter or number grades</p></td>
-    </tr>
-    <tr>
-      <th>to</th>
-      <td><p>convert to <code>letters</code> or <code>numbers</code> (default NA converts to other type)</p></td>
-    </tr>
-    <tr>
-      <th>scale</th>
-      <td><p>conversion table containing <code>letters</code> and <code>numbers</code></p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>vector</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>convert_grades</span><span class='op'>(</span><span class='st'>"A1"</span><span class='op'>)</span> <span class='co'># convert from letter to number</span>
-</div><div class='output co'>#&gt; [1] 22</div><div class='input'><span class='fu'>convert_grades</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>22</span><span class='op'>)</span> <span class='co'># convert from number to letter</span>
-</div><div class='output co'>#&gt;  [1] "G2" "G1" "F3" "F2" "F1" "E3" "E2" "E1" "D3" "D2" "D1" "C3" "C2" "C1" "B3"
-#&gt; [16] "B2" "B1" "A5" "A4" "A3" "A2" "A1"</div><div class='input'>
-<span class='co'># make all letter grades the same case</span>
-<span class='fu'>convert_grades</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"a1"</span>, <span class='st'>"B2"</span>, <span class='st'>"c3"</span><span class='op'>)</span>, <span class='st'>"letters"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "A1" "B2" "C3"</div></pre>
+    <div id="markr-0019000" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.1.9000">
+<a href="#markr-0019000" class="anchor"></a>markr 0.0.1.9000</h1>
+<ul>
+<li>Changed progress tracking of r<code><a href="../reference/make_feedback.html">make_feedback()</a></code> from printed messages to a progress bar</li>
+<li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
+</ul>
+</div>
+    <div id="markr-0010" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.1.0">
+<a href="#markr-0010" class="anchor"></a>markr 0.0.1.0</h1>
+<ul>
+<li>Breaking changes to use <code>student</code> instead of <code>ind</code> in template files.</li>
+</ul>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
+
 </div>
 
 
