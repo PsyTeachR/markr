@@ -311,7 +311,7 @@ Lorem ipsum…
 <li>
 <code>marks</code> (the whole marking spreadsheet)</li>
 <li>
-<code>ind</code> (the individual student’s data)</li>
+<code>student</code> (the individual student’s data)</li>
 </ul>
 <p>In the most typical case, where each student has one row in the spreadsheet, you can reference the student’s data in code blocks or inline R like this:</p>
 <pre>
@@ -321,9 +321,9 @@ date: "&amp;grave;r format(Sys.time(), '%d %B, %Y')&amp;grave;"
 output: html_document  
 ---
 
-**Student**: &amp;grave;r ind$name&amp;grave;  
-**Marker**: &amp;grave;r ind$marker&amp;grave;  
-**Grade**: &amp;grave;r ind$grade&amp;grave;
+**Student**: &amp;grave;r student$name&amp;grave;  
+**Marker**: &amp;grave;r student$marker&amp;grave;  
+**Grade**: &amp;grave;r student$grade&amp;grave;
 
 </pre>
 </div>
@@ -332,7 +332,7 @@ output: html_document
 <a href="#category-tables" class="anchor"></a>Category Tables</h3>
 <p>You can display a table of marks for specific criteria by specifying the column names (<code>cols</code>) for each criterion and the order that the categories should go in (<code>cats</code>).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/category_table.html">category_table</a></span><span class="op">(</span><span class="va">ind</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"KR"</span>, <span class="st">"CE"</span>, <span class="st">"AC"</span><span class="op">)</span>, cats <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="reference/category_table.html">category_table</a></span><span class="op">(</span><span class="va">student</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"KR"</span>, <span class="st">"CE"</span>, <span class="st">"AC"</span><span class="op">)</span>, cats <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span></code></pre></div>
 <table class="table table">
 <thead><tr>
 <th style="text-align:left;">
@@ -410,7 +410,7 @@ AC
   <span class="st">"4"</span> <span class="op">=</span> <span class="st">"Outstanding"</span>
 <span class="op">)</span>
 
-<span class="fu"><a href="reference/category_table.html">category_table</a></span><span class="op">(</span><span class="va">ind</span>, <span class="va">cols</span>, <span class="va">cats</span>, symbol <span class="op">=</span> <span class="st">"✅"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="reference/category_table.html">category_table</a></span><span class="op">(</span><span class="va">student</span>, <span class="va">cols</span>, <span class="va">cats</span>, symbol <span class="op">=</span> <span class="st">"✅"</span><span class="op">)</span></code></pre></div>
 <table class="table table">
 <thead><tr>
 <th style="text-align:left;">

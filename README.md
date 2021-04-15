@@ -140,7 +140,7 @@ You will need to create a template Rmd file for individual feedback. You can get
 Each file will have two data objects available to it: 
 
 * `marks` (the whole marking spreadsheet) 
-* `ind` (the individual student's data)
+* `student` (the individual student's data)
 
 In the most typical case, where each student has one row in the spreadsheet, you can reference the student's data in code blocks or inline R like this:
 
@@ -151,9 +151,9 @@ date: "&grave;r format(Sys.time(), '%d %B, %Y')&grave;"
 output: html_document  
 ---
 
-**Student**: &grave;r ind$name&grave;  
-**Marker**: &grave;r ind$marker&grave;  
-**Grade**: &grave;r ind$grade&grave;
+**Student**: &grave;r student$name&grave;  
+**Marker**: &grave;r student$marker&grave;  
+**Grade**: &grave;r student$grade&grave;
 
 </pre>
 
@@ -165,7 +165,7 @@ You can display a table of marks for specific criteria by specifying the column 
 
 
 ```r
-category_table(ind, cols = c("KR", "CE", "AC"), cats = 1:4)
+category_table(student, cols = c("KR", "CE", "AC"), cats = 1:4)
 ```
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -219,7 +219,7 @@ cats <- list(
   "4" = "Outstanding"
 )
 
-category_table(ind, cols, cats, symbol = "✅")
+category_table(student, cols, cats, symbol = "✅")
 ```
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
