@@ -1,7 +1,7 @@
 Package: markr
 Title: Individual Feedback Documents from Spreadsheets
-Version: 0.0.1.9000
-Date: 2021-03-26
+Version: 0.0.1.9001
+Date: 2021-05-19
 Authors@R: 
     c(person(given = "Lisa",
            family = "DeBruine",

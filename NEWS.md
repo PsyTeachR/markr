@@ -1,3 +1,7 @@
+# markr 0.0.1.9001
+
+* Updated app to use `student` instead of `ind`
+
 # markr 0.0.1.9000
 
 * Changed progress tracking of r`make_feedback()` from printed messages to a progress bar

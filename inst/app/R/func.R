@@ -34,7 +34,7 @@ demo_tbl <- function(n = 20) {
 
 ## . template_text ----
 template_text <- '---
-title: "Feedback for `r ind$class`"  
+title: "Feedback for `r student$class`"  
 date: "`r format(Sys.time(), \'%d %B, %Y\')`"  
 output: html_document  
 ---
@@ -50,9 +50,9 @@ knitr::opts_chunk$set(echo = FALSE,
   h3 { color: purple; }
 </style>
 
-**Student**: `r ind$name` (`r ind["Student ID"]`)  
-**Question**: `r ind$question`  
-**Grade**: `r ind$grade`
+**Student**: `r student$name` (`r student["Student ID"]`)  
+**Question**: `r student$question`  
+**Grade**: `r student$grade`
 
 ### Individual Feedback
 
@@ -69,10 +69,10 @@ cats <- list(
   "4" = "Outstanding"
 )
 
-markr::category_table(ind, cols, cats)
+markr::category_table(student, cols, cats)
 ```
 
-`r ind$feedback`
+`r student$feedback`
 
 ### Generic Feedback
 

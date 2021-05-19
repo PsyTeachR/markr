@@ -204,8 +204,8 @@ server <- function(input, output, session) {
             } else {
                 gb <- marks[, input$group_by]
             }
-            x <- by(marks, gb, function(ind) { ind })
-            ind <- sample(x, 1)[[1]]
+            x <- by(marks, gb, function(student) { student })
+            student <- sample(x, 1)[[1]]
     
             options(knitr.duplicate.label = 'allow')
             rmarkdown::render(template_file,

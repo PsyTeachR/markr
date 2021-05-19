@@ -7,3 +7,4 @@
 ^README.Rmd$
 ^README.html$
 ^pkgdown$
+\.rprofile

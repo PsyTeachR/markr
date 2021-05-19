@@ -184,40 +184,8 @@
 <span class='va'>cols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>K <span class='op'>=</span> <span class='st'>"Knowledge"</span>, E <span class='op'>=</span> <span class='st'>"Evaluation"</span>, C <span class='op'>=</span> <span class='st'>"Communication"</span><span class='op'>)</span>
 <span class='va'>cats</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1"</span> <span class='op'>=</span> <span class='st'>"Bad"</span>, <span class='st'>"2"</span> <span class='op'>=</span> <span class='st'>"OK"</span>, <span class='st'>"3"</span> <span class='op'>=</span> <span class='st'>"Good"</span><span class='op'>)</span>
 <span class='fu'>category_table</span><span class='op'>(</span><span class='va'>marks</span>, <span class='va'>cols</span>, <span class='va'>cats</span><span class='op'>)</span> <span class='co'># html table</span>
-</div><div class='output co'>#&gt; &lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
-#&gt;  &lt;thead&gt;
-#&gt;   &lt;tr&gt;
-#&gt;    &lt;th style="text-align:left;"&gt; Criteria &lt;/th&gt;
-#&gt;    &lt;th style="text-align:center;"&gt; Bad &lt;/th&gt;
-#&gt;    &lt;th style="text-align:center;"&gt; OK &lt;/th&gt;
-#&gt;    &lt;th style="text-align:center;"&gt; Good &lt;/th&gt;
-#&gt;   &lt;/tr&gt;
-#&gt;  &lt;/thead&gt;
-#&gt; &lt;tbody&gt;
-#&gt;   &lt;tr&gt;
-#&gt;    &lt;td style="text-align:left;width: 52%; "&gt; Knowledge &lt;/td&gt;
-#&gt;    &lt;td style="text-align:center;width: 16%; "&gt; * &lt;/td&gt;
-#&gt;    &lt;td style="text-align:center;width: 16%; "&gt;  &lt;/td&gt;
-#&gt;    &lt;td style="text-align:center;width: 16%; "&gt;  &lt;/td&gt;
-#&gt;   &lt;/tr&gt;
-#&gt;   &lt;tr&gt;
-#&gt;    &lt;td style="text-align:left;width: 52%; "&gt; Evaluation &lt;/td&gt;
-#&gt;    &lt;td style="text-align:center;width: 16%; "&gt;  &lt;/td&gt;
-#&gt;    &lt;td style="text-align:center;width: 16%; "&gt; * &lt;/td&gt;
-#&gt;    &lt;td style="text-align:center;width: 16%; "&gt;  &lt;/td&gt;
-#&gt;   &lt;/tr&gt;
-#&gt;   &lt;tr&gt;
-#&gt;    &lt;td style="text-align:left;width: 52%; "&gt; Communication &lt;/td&gt;
-#&gt;    &lt;td style="text-align:center;width: 16%; "&gt;  &lt;/td&gt;
-#&gt;    &lt;td style="text-align:center;width: 16%; "&gt;  &lt;/td&gt;
-#&gt;    &lt;td style="text-align:center;width: 16%; "&gt; * &lt;/td&gt;
-#&gt;   &lt;/tr&gt;
-#&gt; &lt;/tbody&gt;
-#&gt; &lt;/table&gt;</div><div class='input'><span class='fu'>category_table</span><span class='op'>(</span><span class='va'>marks</span>, <span class='va'>cols</span>, <span class='va'>cats</span>, <span class='st'>"X"</span>, <span class='cn'>FALSE</span><span class='op'>)</span> <span class='co'># data table</span>
-</div><div class='output co'>#&gt;        Criteria Bad OK Good
-#&gt; 1     Knowledge   X        
-#&gt; 2    Evaluation      X     
-#&gt; 3 Communication           X</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='error'>Error in cat_width * length(catcols): non-numeric argument to binary operator</span></div><div class='input'><span class='fu'>category_table</span><span class='op'>(</span><span class='va'>marks</span>, <span class='va'>cols</span>, <span class='va'>cats</span>, <span class='st'>"X"</span>, <span class='cn'>FALSE</span><span class='op'>)</span> <span class='co'># data table</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in cat_width * length(catcols): non-numeric argument to binary operator</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

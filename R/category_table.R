@@ -53,7 +53,7 @@ category_table <- function(marks, cols, cats = NULL, symbol = "*",
 
   # return
   cat_width <- floor(critwidth*100/length(catcols))
-  crit_width <- 100 - cat_width*length(catcols)
+  crit_width <- (100 - cat_width*length(catcols)) %>% paste0("%")
   if (kable) {
     kableExtra::kable(cat_table,
       align = c("l", rep("c", length(catcols))),
@@ -61,11 +61,11 @@ category_table <- function(marks, cols, cats = NULL, symbol = "*",
       ...
     ) %>%
       kableExtra::kable_styling(
-        #bootstrap_options = "bordered",
+        #bootstrap_options = c("striped"),
         full_width = TRUE
       ) %>%
       kableExtra::column_spec(1, width = paste0(crit_width, "%")) %>%
-      kableExtra::column_spec(2:ncol(cat_table), width = paste0(cat_width, "%"))
+      kableExtra::column_spec(2:ncol(cat_table), width = cat_width)
 
   } else {
     rownames(cat_table) <- NULL

@@ -168,7 +168,7 @@ You can display a table of marks for specific criteria by specifying the column 
 category_table(student, cols = c("KR", "CE", "AC"), cats = 1:4)
 ```
 
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
    <th style="text-align:left;"> Criteria </th>
@@ -222,7 +222,7 @@ cats <- list(
 category_table(student, cols, cats, symbol = "✅")
 ```
 
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
    <th style="text-align:left;"> Criteria </th>
