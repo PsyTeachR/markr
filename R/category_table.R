@@ -36,11 +36,19 @@ category_table <- function(marks, cols, cats = NULL, symbol = "*",
   # convert cat code to full name
   if (!is.null(cats)) {
     if (is.null(names(cats))) names(cats) <- cats
-    dlong$cat <- dplyr::recode(dlong$cat, !!!cats)
+    names(cats) <- tolower(names(cats)) # for case-insensitive recoding
+    dlong$cat <- dplyr::recode(tolower(dlong$cat), !!!cats)
     catcols <- unlist(cats) %>% unname() %>% as.character()
   } else {
     # get all possible categories and sort
-    catcols <- unique(dlong$cat) %>% as.character() %>% sort()
+    catcols_case <- unique(dlong$cat) %>% as.character() %>% sort()
+    catcols_nocase <- tolower(catcols_case) %>% unique() 
+    
+    # use first example of case-insensitive matches
+    catcols <- sapply(catcols_nocase, function(x) {
+      y <- which(tolower(catcols_case) %in% x)[[1]]
+      catcols_case[y]
+    })
   }
 
   dlong$cat <- factor(dlong$cat, catcols)

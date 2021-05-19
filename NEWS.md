@@ -1,6 +1,7 @@
 # markr 0.0.1.9001
 
-* Updated app to use `student` instead of `ind`
+* Updated `markr_app()` to use `student` instead of `ind`
+* `category_table()` is now case-insensitive for categories
 
 # markr 0.0.1.9000
 
