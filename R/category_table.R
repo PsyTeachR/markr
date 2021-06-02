@@ -3,7 +3,7 @@
 #' @param marks table with criteria columns (only the first row will be used)
 #' @param cols a named vector of the criteria (names are the marks column names and values are the text to display)
 #' @param cats a named vector of the marking categories (names are the value in marks and values are the text to display)
-#' @param symbol the symbol to display in the table
+#' @param symbol the symbol to display in the table (&#10004; is the HTML code for a check mark)
 #' @param kable return kable (T) or data table (F)
 #' @param critwidth the width of the first (criteria) column; the rest of the columns are set to equal widths
 #' @param ... arguments to pass to kableExtra
@@ -18,7 +18,7 @@
 #' category_table(marks, cols, cats) # html table
 #' category_table(marks, cols, cats, "X", FALSE) # data table
 #'
-category_table <- function(marks, cols, cats = NULL, symbol = "*",
+category_table <- function(marks, cols, cats = NULL, symbol = "&#10004;",
                            kable = TRUE, critwidth = 0.5,  ...) {
   # get column names for table
   if (is.null(names(cols))) names(cols) <- cols
@@ -66,14 +66,15 @@ category_table <- function(marks, cols, cats = NULL, symbol = "*",
     kableExtra::kable(cat_table,
       align = c("l", rep("c", length(catcols))),
       row.names = FALSE,
+      escape = FALSE,
       ...
     ) %>%
       kableExtra::kable_styling(
         #bootstrap_options = c("striped"),
         full_width = TRUE
       ) %>%
-      kableExtra::column_spec(1, width = paste0(crit_width, "%")) %>%
-      kableExtra::column_spec(2:ncol(cat_table), width = cat_width)
+      kableExtra::column_spec(1, width = crit_width) %>%
+      kableExtra::column_spec(2:ncol(cat_table), width = paste0(cat_width, "%"))
 
   } else {
     rownames(cat_table) <- NULL

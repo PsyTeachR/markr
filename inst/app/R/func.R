@@ -36,7 +36,9 @@ demo_tbl <- function(n = 20) {
 template_text <- '---
 title: "Feedback for `r student$class`"  
 date: "`r format(Sys.time(), \'%d %B, %Y\')`"  
-output: html_document  
+output: 
+  html_document:
+    df_print: kable
 ---
   
 ```{r setup, include = FALSE}
@@ -56,7 +58,7 @@ knitr::opts_chunk$set(echo = FALSE,
 
 ### Individual Feedback
 
-```{r, results="asis"}
+```{r}
 cols <- list(
   "KR" = "Knowledge and Research",
   "CE" = "Critical Evaluation",
@@ -88,7 +90,7 @@ Here are some things that could be improved:
 
 ### Grade Distribution
 
-```{r}
+```{r, fig.alt="Dsitribution of grades for Questions A and B."}
 markr::mark_dist(
     marks = marks, 
     mark_col = "grade", 

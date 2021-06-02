@@ -8,7 +8,7 @@ category_table(
   marks,
   cols,
   cats = NULL,
-  symbol = "*",
+  symbol = "&#10004;",
   kable = TRUE,
   critwidth = 0.5,
   ...
@@ -21,7 +21,7 @@ category_table(
 
 \item{cats}{a named vector of the marking categories (names are the value in marks and values are the text to display)}
 
-\item{symbol}{the symbol to display in the table}
+\item{symbol}{the symbol to display in the table (✔ is the HTML code for a check mark)}
 
 \item{kable}{return kable (T) or data table (F)}
 

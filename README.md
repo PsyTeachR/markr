@@ -13,7 +13,7 @@ The goal of markr is to create individual feedback documents and marking summari
 
 ## Installation
 
-You can install the released version of markr from GitHub with:
+You can install the development version of markr from GitHub with:
 
 ``` r
 remotes::install_github("psyteachr/markr")
@@ -35,83 +35,14 @@ Your marking file might be organised like this, with a column for the student ID
 
 
 ```r
-data("demo_marks", package = "markr")
+demo_marks
+#>   ID        name  marker question KR CE AC mark       feedback
+#> 1 S1       Mukul Prof. X        A  4  4  4    4 Lorem ipsum...
+#> 2 S2        Kias Prof. X        B  4  3  2    3 Lorem ipsum...
+#> 3 S3       Omair Prof. X        B  4  4  4    4 Lorem ipsum...
+#> 4 S4     Ramesha Prof. X        A  1  2  2    1 Lorem ipsum...
+#> 5 S5 Libby-Marie Prof. X        A  2  3  3    2 Lorem ipsum...
 ```
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> ID </th>
-   <th style="text-align:left;"> name </th>
-   <th style="text-align:left;"> marker </th>
-   <th style="text-align:left;"> question </th>
-   <th style="text-align:right;"> KR </th>
-   <th style="text-align:right;"> CE </th>
-   <th style="text-align:right;"> AC </th>
-   <th style="text-align:right;"> mark </th>
-   <th style="text-align:left;"> feedback </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> S1 </td>
-   <td style="text-align:left;"> Mukul </td>
-   <td style="text-align:left;"> Prof. X </td>
-   <td style="text-align:left;"> A </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> Lorem ipsum... </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> S2 </td>
-   <td style="text-align:left;"> Kias </td>
-   <td style="text-align:left;"> Prof. X </td>
-   <td style="text-align:left;"> B </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:left;"> Lorem ipsum... </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> S3 </td>
-   <td style="text-align:left;"> Omair </td>
-   <td style="text-align:left;"> Prof. X </td>
-   <td style="text-align:left;"> B </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:left;"> Lorem ipsum... </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> S4 </td>
-   <td style="text-align:left;"> Ramesha </td>
-   <td style="text-align:left;"> Prof. X </td>
-   <td style="text-align:left;"> A </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:left;"> Lorem ipsum... </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> S5 </td>
-   <td style="text-align:left;"> Libby-Marie </td>
-   <td style="text-align:left;"> Prof. X </td>
-   <td style="text-align:left;"> A </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:left;"> Lorem ipsum... </td>
-  </tr>
-</tbody>
-</table>
-
-
 
 Markr has a convenience function for translating between number and letter grades for different purposes. It defaults to the `glasgow22()` scale, but you can add your own scale.
 
@@ -147,13 +78,13 @@ In the most typical case, where each student has one row in the spreadsheet, you
 <pre>
 ---  
 title: "Feedback"  
-date: "&grave;r format(Sys.time(), '%d %B, %Y')&grave;"  
+date: `r format(Sys.time(), '%d %B, %Y')`"  
 output: html_document  
 ---
 
-**Student**: &grave;r student$name&grave;  
-**Marker**: &grave;r student$marker&grave;  
-**Grade**: &grave;r student$grade&grave;
+**Student**: `r student$name`  
+**Marker**: `r student$marker` 
+**Grade**: `r student$grade`
 
 </pre>
 
@@ -168,7 +99,7 @@ You can display a table of marks for specific criteria by specifying the column 
 category_table(student, cols = c("KR", "CE", "AC"), cats = 1:4)
 ```
 
-<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<table class="table" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
    <th style="text-align:left;"> Criteria </th>
@@ -184,19 +115,19 @@ category_table(student, cols = c("KR", "CE", "AC"), cats = 1:4)
    <td style="text-align:center;width: 12%; ">  </td>
    <td style="text-align:center;width: 12%; ">  </td>
    <td style="text-align:center;width: 12%; ">  </td>
-   <td style="text-align:center;width: 12%; "> * </td>
+   <td style="text-align:center;width: 12%; "> ✔ </td>
   </tr>
   <tr>
    <td style="text-align:left;width: 52%; "> CE </td>
    <td style="text-align:center;width: 12%; ">  </td>
    <td style="text-align:center;width: 12%; ">  </td>
-   <td style="text-align:center;width: 12%; "> * </td>
+   <td style="text-align:center;width: 12%; "> ✔ </td>
    <td style="text-align:center;width: 12%; ">  </td>
   </tr>
   <tr>
    <td style="text-align:left;width: 52%; "> AC </td>
    <td style="text-align:center;width: 12%; ">  </td>
-   <td style="text-align:center;width: 12%; "> * </td>
+   <td style="text-align:center;width: 12%; "> ✔ </td>
    <td style="text-align:center;width: 12%; ">  </td>
    <td style="text-align:center;width: 12%; ">  </td>
   </tr>
@@ -222,7 +153,7 @@ cats <- list(
 category_table(student, cols, cats, symbol = "✅")
 ```
 
-<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<table class="table" style="margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
    <th style="text-align:left;"> Criteria </th>
@@ -364,7 +295,7 @@ You can display a summary plot of the marks in the student feedback or for your 
 mark_dist(demo_marks, "mark", scale = 0:5)
 ```
 
-<img src="man/figures/README-mark-dist-plot-1-1.png" title="plot of chunk mark-dist-plot-1" alt="plot of chunk mark-dist-plot-1" width="50%" />
+<img src="man/figures/README-mark-dist-plot-1-1.png" title="Plot of the mark distribution" alt="Plot of the mark distribution" width="50%" />
 
 
 
@@ -377,7 +308,7 @@ mark_dist(marks,
           scale = glasgow22()$letters[5:26])
 ```
 
-<img src="man/figures/README-mark-dist-by-q-plot-1.png" title="plot of chunk mark-dist-by-q-plot" alt="plot of chunk mark-dist-by-q-plot" width="50%" />
+<img src="man/figures/README-mark-dist-by-q-plot-1.png" title="Plot of the mark distribution separated by question" alt="Plot of the mark distribution separated by question" width="50%" />
 
 Or a plot of the individual criteria
 
@@ -386,7 +317,7 @@ Or a plot of the individual criteria
 cat_dist(marks, cols, cats, facet_by = "question")
 ```
 
-<img src="man/figures/README-cat-dist-plot-1.png" title="plot of chunk cat-dist-plot" alt="plot of chunk cat-dist-plot" width="50%" />
+<img src="man/figures/README-cat-dist-plot-1.png" title="Plot of the distribution of the individual criteria for each question." alt="Plot of the distribution of the individual criteria for each question." width="50%" />
 
 Set `xaxis = "cat"` to display the categories across the x-axis. The output is a ggplot object, so you can add further ggplot functions to customise your plots.
 
@@ -399,7 +330,7 @@ cat_dist(marks, cols, cats, xaxis = "cat",
   scale_y_continuous(breaks = seq(0, 12, 4))
 ```
 
-<img src="man/figures/README-cat-dist-x-plot-1.png" title="plot of chunk cat-dist-x-plot" alt="plot of chunk cat-dist-x-plot" width="50%" />
+<img src="man/figures/README-cat-dist-x-plot-1.png" title="Plot of the distribution of the individual criteria for each question with a red, ornage and yellow colour scheme." alt="Plot of the distribution of the individual criteria for each question with a red, ornage and yellow colour scheme." width="50%" />
 
 
 

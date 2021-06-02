@@ -56,7 +56,9 @@ student <- marks[2, ]
 
 To insert information from a column into the text, you use this format: 
 <!-- the next line makes this look correct when this document is knit to HTML -->
-<code>&grave;r student$marker&grave;</code> 
+```
+`r student$marker`
+```
 <!-- the next line shows how it should look in the Rmd file -->
 (e.g., `r student$marker`).
 

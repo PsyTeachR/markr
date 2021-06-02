@@ -100,8 +100,11 @@ make_feedback <- function(marks, template, filename = NULL,
 
   x <- by(marks, marks[, group_by], function(student) {
     # get filename and create subdirs
-    fname <- c(list(file_fmt), student[1, ]) %>%
-      do.call(sprintf, .)
+    suppressWarnings({
+      # warns about unused arguments
+      fname <- c(list(file_fmt), student[1, ]) %>%
+        do.call(sprintf, .)
+    })
     dir.create(dirname(fname),
                recursive = TRUE,
                showWarnings = FALSE)

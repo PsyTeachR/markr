@@ -1,3 +1,8 @@
+# markr 0.0.1.9002
+
+* Changed the default "*" symbol for `category_table()` to a checkmark
+* Added alt-text to figure blocks in the template and demo
+
 # markr 0.0.1.9001
 
 * Updated `markr_app()` to use `student` instead of `ind`

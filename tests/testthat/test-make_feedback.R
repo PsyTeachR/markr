@@ -28,6 +28,7 @@ test_that("default", {
   )
   
   #f1 <- paste0(tdir, "/feedback/1.html") %>% readLines()
+  # browseURL(paste0(tdir, "/feedback/2.html"))
 
   expect_true(file.exists(paste0(tdir, "/feedback/1.html")))
   expect_true(file.exists(paste0(tdir, "/feedback/2.html")))

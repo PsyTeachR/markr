@@ -1,7 +1,9 @@
 ---
 title: "Feedback for `r class_name`"  
 date: "`r format(Sys.time(), '%d %B, %Y')`"  
-output: html_document  
+output: 
+  html_document:
+    df_print: kable
 ---
 
 ```{r setup, include = FALSE}
@@ -16,8 +18,14 @@ library(markr)
 
 ```{r, eval=F}
 # set eval=T to knit this example for debugging
-marks <- demo_marks   # load your data as marks
-student <- marks[1, ] # selects just the first row
+marks <- demo_marks  # load your data as marks
+# convert the marks column to letter grades
+scale <- data.frame(
+  numbers = 4:0,
+  letters = c("A", "B", "C", "D", "E")
+)
+marks$grade <- convert_grades(marks$mark, "letter", scale)
+student <- marks[1, ]    # selects just the first row
 ```
 
 **Student**: `r student$name` (`r student$ID`)  
@@ -28,7 +36,7 @@ You answered question `r student$question`.
 
 ## Categories
 
-```{r, results='asis'}
+```{r}
 cols <- list(
   "KR" = "Knowledge and Research",
   "CE" = "Critical Evaluation",
@@ -57,18 +65,21 @@ Text to be included in every feedback file.
 
 ### Distribution of Marks
 
-```{r}
+```{r, fig.alt="A plot showing the distribution of marks for questions A and B. "}
 # you can create plots dynamically
 # mark_dist(marks, "grade", facet_by = "question", 
 #           scale = c("E", "D", "C", "B", "A"))
 
-# if the same images are used in many files 
-# it is better to save them and reference like this:
 knitr::include_graphics("class_plot.png")
 ```
 
 
-![](https://psyteachr.github.io/images/psyTeachR_logo.png)
+```{r, fig.align='right', out.width="25%", fig.alt="#psyTeachR logo in rainbow colours with the words Reproducible and Research after the R"}
+# if the same images are used in many files 
+# it is better to save them and reference like this:
+knitr::include_graphics("https://psyteachr.github.io/images/psyTeachR_logo.png")
+```
+
 
 
 

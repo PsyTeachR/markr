@@ -1,4 +1,4 @@
-# markr <img src="man/figures/logo.png" align="right" alt="" width="120" />
+# markr <img src="man/figures/logo.png" align="right" alt="" width="120" />'
 
 <!-- rmarkdown v1 -->
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -45,9 +45,11 @@ markr::markr_example()
 
 Your marking file might be organised like this, with a column for the student ID, three columns for category marks (KR, CE and AC), a column for the numeric mark, and a column with individual text feedback. 
 
-```{r}
+```{r, eval = FALSE}
 demo_marks
 ```
+
+`r kable(demo_marks)`
 
 Markr has a convenience function for translating between number and letter grades for different purposes. It defaults to the `glasgow22()` scale, but you can add your own scale.
 

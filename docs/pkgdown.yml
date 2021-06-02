@@ -2,5 +2,8 @@ pandoc: '2.13'
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2021-05-19T11:11Z
+last_built: 2021-06-02T14:55Z
+urls:
+  reference: https://psyteachr.github.io/markr/reference
+  article: https://psyteachr.github.io/markr/articles
 
