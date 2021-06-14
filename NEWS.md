@@ -1,3 +1,7 @@
+# markr 0.0.1.9003
+
+* Added "glasgow" example to `markr_example()`
+
 # markr 0.0.1.9002
 
 * Changed the default "*" symbol for `category_table()` to a checkmark

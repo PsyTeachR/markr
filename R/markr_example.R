@@ -1,5 +1,6 @@
 #' Make example directory
 #'
+#' @param example which example (demo or glasgow)
 #' @param dir the directory to save the example files in
 #'
 #' @return opens the demo.Rmd file for editing
@@ -9,12 +10,15 @@
 #' \dontrun{
 #' markr_example("demo")
 #' }
-markr_example <- function(dir = "markr_example") {
+markr_example <- function(example = c("demo", "glasgow"),
+                          dir = paste0(example, "_example")) {
+  example <- match.arg(example)
+  
   dir.create(dir,
              recursive = TRUE,
              showWarnings = FALSE)
 
-  demodir <- system.file("example", package = "markr")
+  demodir <- system.file(example, package = "markr")
   demofiles <- list.files(demodir)
   fromfiles <- paste0(demodir, "/", demofiles)
   tofiles <- paste0(dir, "/", demofiles)

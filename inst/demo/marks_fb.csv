@@ -1,0 +1,13 @@
+ID,name,marker,question,KR,CE,AC,mark,feedback
+S1,Mukul,Prof. X,A,4,4,4,4,"Short feedback can go on one line after the colon"
+S2,Kias,Prof. X,B,4,3,2,3,"Use the | or > style for long entries or
+entries with special characters like : or quotes
+that tend to cause YAML problems."
+S3,Omair,Prof. X,B,4,4,4,4,"## A list of feedback
+
+* item 1
+* item 2"
+S4,Ramesha,Prof. X,A,1,2,2,1,"One paragraph of feedback with line breaks in the text file, but no line breaks in the output."
+S5,Libby-Marie,Prof. X,A,2,3,3,2,"One paragraph of feedback
+with line breaks in the text file,
+and line breaks in the output."

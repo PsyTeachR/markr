@@ -42,7 +42,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">markr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9003</span>
       </span>
     </div>
 
@@ -112,7 +112,11 @@
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"psyteachr/markr"</span><span class="op">)</span></code></pre></div>
 <p>Run the following code to create an <code>example</code> directory and then explore the code in <code>demo.Rmd</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">markr</span><span class="fu">::</span><span class="fu"><a href="reference/markr_example.html">markr_example</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="co"># an example using A-F marks</span>
+<span class="fu">markr</span><span class="fu">::</span><span class="fu"><a href="reference/markr_example.html">markr_example</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># an example using the University of Glasgow marking scheme</span>
+<span class="fu">markr</span><span class="fu">::</span><span class="fu"><a href="reference/markr_example.html">markr_example</a></span><span class="op">(</span><span class="st">"glasgow"</span><span class="op">)</span></code></pre></div>
 <p>See the <a href="https://psyteachr.github.io/markr/articles/example.html">example vignette</a> for a demo.</p>
 </div>
 </div>

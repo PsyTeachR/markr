@@ -4,9 +4,14 @@
 \alias{markr_example}
 \title{Make example directory}
 \usage{
-markr_example(dir = "markr_example")
+markr_example(
+  example = c("demo", "glasgow"),
+  dir = paste0(example, "_example")
+)
 }
 \arguments{
+\item{example}{which example (demo or glasgow)}
+
 \item{dir}{the directory to save the example files in}
 }
 \value{

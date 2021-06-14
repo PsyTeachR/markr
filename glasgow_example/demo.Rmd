@@ -1,0 +1,41 @@
+---
+title: "UofG example for making feedback"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    df_print: kable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE, out.width = "75%")
+library(markr)
+```
+
+## Read data
+
+You can read in all your marking data from a table format such as CSV (.csv) or Excel (.xlsx). Make sure that the filename stated in your code (see below) matches exactly the filename of your .csv/.xlsx file in your folder, including the file extension. You also need to make sure that the file with your data is in the same folder as this .Rmd file, as the code will automatically look in the folder for data.
+
+Here we load in an Excel file called marks.xlsx, from our folder, which contains all the marking and feedback data we want to use to generate our feedback documents.
+
+```{r load-feedback-data}
+# all data in one table (csv or excel)
+marks <- read_marks("marks.xlsx")
+```
+
+## Create feedback files
+
+The following code creates a feedback file for each row in the `marks` file, i.e. the data contained in your marking file. The code uses the UofG_template.Rmd file to create an unique and individual feedback file for each student, called "YourFeedback.html". The code saves all the feedback files in a folder called "feedback_folder", with each individual file in a unique sub-folder for each student using, as part of the name, the `MoodleID` from the original marking file. Once the code has run and completed, you will be able to condense all the student folders into a zip file which you can then just upload to Moodle and students can then access their own individual feedback. 
+
+In addition, in the box below, you can update the `class_name` to your own class name by replacing the name between the ""s with your class name.
+
+```{r create-feedback-sheets}
+# render the feedback files
+make_feedback(
+  marks = marks,
+  template = "UofG_template.Rmd",
+  filename = "feedback_files/Participant_[MoodleID]_assignsubmission_file_/YourFeedback.html",
+  class_name = "CLASS UNPA-497"
+)
+```
+

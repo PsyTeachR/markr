@@ -52,7 +52,7 @@ knitr::opts_chunk$set(echo = FALSE,
   h3 { color: purple; }
 </style>
 
-**Student**: `r student$name` (`r student["Student ID"]`)  
+**Student**: `r student$name` (`r student["Student ID"][[1]]`)  
 **Question**: `r student$question`  
 **Grade**: `r student$grade`
 

@@ -205,7 +205,11 @@ devtools::install_github(&quot;psyteachr/markr&quot;)
 
 <p>Run the following code to create an <code>example</code> directory and then explore the code in <code>demo.Rmd</code>.</p>
 
-<pre><code class="r">markr::markr_example()
+<pre><code class="r"># an example using A-F marks
+markr::markr_example()
+
+# an example using the University of Glasgow marking scheme
+markr::markr_example(&quot;glasgow&quot;)
 </code></pre>
 
 <p>See the <a href="https://psyteachr.github.io/markr/articles/example.html">example vignette</a> for a demo.</p>

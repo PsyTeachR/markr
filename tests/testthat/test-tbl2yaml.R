@@ -1,4 +1,4 @@
-tbl_path <- system.file("example", "marks.csv", package = "markr")
+tbl_path <- system.file("demo", "marks.csv", package = "markr")
 tbl <- read.csv(tbl_path)
 filename <- tempfile()
 filename_yml <- paste0(filename, ".yml")

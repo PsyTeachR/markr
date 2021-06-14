@@ -42,7 +42,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">markr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9003</span>
       </span>
     </div>
 
@@ -411,12 +411,12 @@ Academic Communication
 <a href="#faceted-plots" class="anchor"></a>Faceted plots</h3>
 <p>Here we’ve made a new <code>marks</code> table with 100 students. Each student answered one of three questions, indicated by the <code>questions</code> column.</p>
 <pre><code>#&gt;   ID question KR CE AC mark letter grade_band
-#&gt; 1  1        2  2  4  1   17     B1          B
-#&gt; 2  2        2  2  1  1   15     B3          B
-#&gt; 3  3        1  4  1  2   16     B2          B
-#&gt; 4  4        3  2  2  1   16     B2          B
-#&gt; 5  5        1  3  3  1   16     B2          B
-#&gt; 6  6        2  3  2  1   13     C2          C</code></pre>
+#&gt; 1  1        2  1  2  3   20     A3          A
+#&gt; 2  2        1  3  3  4   16     B2          B
+#&gt; 3  3        3  4  4  3   15     B3          B
+#&gt; 4  4        3  1  4  4   15     B3          B
+#&gt; 5  5        2  1  1  2    9     D3          D
+#&gt; 6  6        3  3  1  2   13     C2          C</code></pre>
 <p>You can plot the letter grade by question using the following code. To get the letters to display in the right order, we set the <code>scale</code> <a class="glossary" target="_blank" title="A variable that provides input to a function." href="https://psyteachr.github.io/glossary/a#argument">argument</a> to the categories in the order we want to show them. The Glasgow 22-point scale has 4 categories we don’t want to show on this plot, so you can quickly get the values we do want using the code <code>glasgow22()$letters[5:26]</code>, or you can manually create a <a class="glossary" target="_blank" title="A type of data structure that is basically a list of things like T/F values, numbers, or strings." href="https://psyteachr.github.io/glossary/v#vector">vector</a> with the scale order like <code><a href="https://rdrr.io/r/base/c.html">c("G2", "G1", "F3", ..., "A1")</a></code>.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/mark_dist.html">mark_dist</a></span><span class="op">(</span><span class="va">marks</span>, 
