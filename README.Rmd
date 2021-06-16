@@ -31,3 +31,6 @@ markr::markr_example("glasgow")
 ```
 
 See the [example vignette](https://psyteachr.github.io/markr/articles/example.html) for a demo.
+
+We also have two YouTube videos with a [walk-through](https://youtu.be/X8iz9w1whMU) and [background of markr](https://youtu.be/Du8Xx9lWPR8).
+
