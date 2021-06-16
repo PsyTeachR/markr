@@ -9,8 +9,7 @@
 #' @export
 #'
 #' @examples
-#' tbl <- system.file("example", "marks.csv", package = "markr")
-#' yaml <- tbl2yaml(tbl, class = "PSYCH1001")
+#' yaml <- tbl2yaml(demo_marks, class = "PSYCH1001")
 #'
 tbl2yaml <- function(tbl = NULL, filename = NULL, ..., open = TRUE) {
   if (is.character(tbl) && file.exists(tbl)) {

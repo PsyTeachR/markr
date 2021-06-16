@@ -1,3 +1,9 @@
+# markr 0.0.1.9004
+
+* `markr_example()` now opens all Rmd files in RStudio
+* added more explanatory comments to templates for setting up `category_table()`
+* fixed some function examples that were out of date with previous changes
+
 # markr 0.0.1.9003
 
 * Added "glasgow" example to `markr_example()`

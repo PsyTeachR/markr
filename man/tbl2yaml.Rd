@@ -22,7 +22,6 @@ opens file or returns YAML text
 Convert table to YAML
 }
 \examples{
-tbl <- system.file("example", "marks.csv", package = "markr")
-yaml <- tbl2yaml(tbl, class = "PSYCH1001")
+yaml <- tbl2yaml(demo_marks, class = "PSYCH1001")
 
 }

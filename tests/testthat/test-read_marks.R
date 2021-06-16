@@ -1,5 +1,5 @@
-tbl <- system.file("demo", "marks.csv", package = "markr")
-yaml <- system.file("demo", "fb.yml", package = "markr")
+tbl <- system.file("basic", "marks.csv", package = "markr")
+yaml <- system.file("basic", "fb.yml", package = "markr")
 cols <- c("ID", "name", "marker", "question",
           "KR", "CE", "AC", "mark")
 

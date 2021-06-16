@@ -5,23 +5,23 @@
 \title{Make example directory}
 \usage{
 markr_example(
-  example = c("demo", "glasgow"),
+  example = c("basic", "glasgow"),
   dir = paste0(example, "_example")
 )
 }
 \arguments{
-\item{example}{which example (demo or glasgow)}
+\item{example}{which example (basic or glasgow)}
 
 \item{dir}{the directory to save the example files in}
 }
 \value{
-opens the demo.Rmd file for editing
+opens the Rmd files for editing
 }
 \description{
 Make example directory
 }
 \examples{
 \dontrun{
-markr_example("demo")
+markr_example("glasgow")
 }
 }

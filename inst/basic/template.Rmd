@@ -37,11 +37,16 @@ You answered question `r student$question`.
 ## Categories
 
 ```{r}
+# set order and translation of criteria columns
+# exact column header names = names to display in the table
 cols <- list(
   "KR" = "Knowledge and Research",
   "CE" = "Critical Evaluation",
   "AC" = "Academic Communication"
 )
+
+# set order and translation of category labels
+# category values = labels to display in the table
 cats <- list(
   "1" = "Needs Work",
   "2" = "Acceptable",
@@ -49,6 +54,7 @@ cats <- list(
   "4" = "Outstanding"
 )
 
+# create table for this student
 category_table(student, cols, cats)
 ```
 

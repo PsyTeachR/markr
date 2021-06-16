@@ -42,7 +42,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">markr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9003</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9004</span>
       </span>
     </div>
 
@@ -244,11 +244,16 @@ AC
 </table>
 <p>You can translate abbreviations used in the marking sheet using <a class="glossary" target="_blank" title="A container data type that allows items with different data types to be grouped together." href="https://psyteachr.github.io/glossary/l#list">lists</a> and even change the <code>symbol</code> to an emoji.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="co"># set order and translation of criteria columns</span>
+<span class="co"># exact column header names = names to display in the table</span>
+<span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
   <span class="st">"KR"</span> <span class="op">=</span> <span class="st">"Knowledge and Research"</span>,
   <span class="st">"CE"</span> <span class="op">=</span> <span class="st">"Critical Evaluation"</span>,
   <span class="st">"AC"</span> <span class="op">=</span> <span class="st">"Academic Communication"</span>
 <span class="op">)</span>
+
+<span class="co"># set order and translation of category labels</span>
+<span class="co"># category values = labels to display in the table</span>
 <span class="va">cats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
   <span class="st">"1"</span> <span class="op">=</span> <span class="st">"Needs Work"</span>,
   <span class="st">"2"</span> <span class="op">=</span> <span class="st">"Acceptable"</span>,
@@ -256,6 +261,7 @@ AC
   <span class="st">"4"</span> <span class="op">=</span> <span class="st">"Outstanding"</span>
 <span class="op">)</span>
 
+<span class="co"># create table for this student</span>
 <span class="fu"><a href="../reference/category_table.html">category_table</a></span><span class="op">(</span><span class="va">student</span>, <span class="va">cols</span>, <span class="va">cats</span>, symbol <span class="op">=</span> <span class="st">"✅"</span><span class="op">)</span></code></pre></div>
 <table class="table table">
 <thead><tr>
@@ -327,7 +333,7 @@ Academic Communication
 <p>Once you have your marks and feedback in a table and a template file ready, you can create a feedback document for each student with the <code><a href="../reference/make_feedback.html">make_feedback()</a></code> <a class="glossary" target="_blank" title="A named section of code that can be reused." href="https://psyteachr.github.io/glossary/f#function">function</a>.</p>
 <p>Make sure to set the <code>filename</code> to something unique for each student. You can use any columns in the marks table as part of the filename.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tempfile</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"example"</span>, <span class="st">"template.Rmd"</span>, package <span class="op">=</span> <span class="st">"markr"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">tempfile</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"basic"</span>, <span class="st">"template.Rmd"</span>, package <span class="op">=</span> <span class="st">"markr"</span><span class="op">)</span>
 
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_feedback.html">make_feedback</a></span><span class="op">(</span>
   marks <span class="op">=</span> <span class="va">marks</span>, <span class="co"># or path to tabular data</span>
@@ -411,12 +417,12 @@ Academic Communication
 <a href="#faceted-plots" class="anchor"></a>Faceted plots</h3>
 <p>Here we’ve made a new <code>marks</code> table with 100 students. Each student answered one of three questions, indicated by the <code>questions</code> column.</p>
 <pre><code>#&gt;   ID question KR CE AC mark letter grade_band
-#&gt; 1  1        2  1  2  3   20     A3          A
-#&gt; 2  2        1  3  3  4   16     B2          B
-#&gt; 3  3        3  4  4  3   15     B3          B
-#&gt; 4  4        3  1  4  4   15     B3          B
-#&gt; 5  5        2  1  1  2    9     D3          D
-#&gt; 6  6        3  3  1  2   13     C2          C</code></pre>
+#&gt; 1  1        3  2  2  3   16     B2          B
+#&gt; 2  2        1  2  1  2   14     C1          C
+#&gt; 3  3        3  2  2  3   14     C1          C
+#&gt; 4  4        3  4  3  4   13     C2          C
+#&gt; 5  5        3  4  2  3   14     C1          C
+#&gt; 6  6        1  2  3  1   16     B2          B</code></pre>
 <p>You can plot the letter grade by question using the following code. To get the letters to display in the right order, we set the <code>scale</code> <a class="glossary" target="_blank" title="A variable that provides input to a function." href="https://psyteachr.github.io/glossary/a#argument">argument</a> to the categories in the order we want to show them. The Glasgow 22-point scale has 4 categories we don’t want to show on this plot, so you can quickly get the values we do want using the code <code>glasgow22()$letters[5:26]</code>, or you can manually create a <a class="glossary" target="_blank" title="A type of data structure that is basically a list of things like T/F values, numbers, or strings." href="https://psyteachr.github.io/glossary/v#vector">vector</a> with the scale order like <code><a href="https://rdrr.io/r/base/c.html">c("G2", "G1", "F3", ..., "A1")</a></code>.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/mark_dist.html">mark_dist</a></span><span class="op">(</span><span class="va">marks</span>, 

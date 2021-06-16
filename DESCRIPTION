@@ -1,7 +1,7 @@
 Package: markr
 Title: Individual Feedback Documents from Spreadsheets
-Version: 0.0.1.9003
-Date: 2021-06-14
+Version: 0.0.1.9004
+Date: 2021-06-16
 Authors@R: 
     c(person(given = "Lisa",
            family = "DeBruine",
@@ -47,9 +47,12 @@ Suggests:
     DT,
     ukbabynames,
     stringr,
-    tools
+    tools,
+    glossary
 Depends: 
     R (>= 2.10)
+Remotes:
+    psyteachr/glossary
 URL: https://github.com/psyteachr/markr
 BugReports: https://github.com/psyteachr/markr/issues
 VignetteBuilder: knitr

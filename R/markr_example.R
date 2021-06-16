@@ -1,16 +1,16 @@
 #' Make example directory
 #'
-#' @param example which example (demo or glasgow)
+#' @param example which example (basic or glasgow)
 #' @param dir the directory to save the example files in
 #'
-#' @return opens the demo.Rmd file for editing
+#' @return opens the Rmd files for editing
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' markr_example("demo")
+#' markr_example("glasgow")
 #' }
-markr_example <- function(example = c("demo", "glasgow"),
+markr_example <- function(example = c("basic", "glasgow"),
                           dir = paste0(example, "_example")) {
   example <- match.arg(example)
   
@@ -22,12 +22,16 @@ markr_example <- function(example = c("demo", "glasgow"),
   demofiles <- list.files(demodir)
   fromfiles <- paste0(demodir, "/", demofiles)
   tofiles <- paste0(dir, "/", demofiles)
-  x <- file.copy(fromfiles, tofiles)
+  file.copy(fromfiles, tofiles)
 
-  filename <- paste0(dir, "/demo.Rmd")
+  # open all Rmds
+  rmds <- grepl("\\.Rmd$", tofiles)
+  filenames <- tofiles[rmds]
   if(rstudioapi::hasFun("navigateToFile")){
-    rstudioapi::navigateToFile(filename)
+    sapply(filenames, rstudioapi::navigateToFile)
   } else {
-    utils::file.edit(filename)
+    sapply(filenames, utils::file.edit)
   }
+  
+  invisible()
 }

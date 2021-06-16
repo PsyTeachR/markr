@@ -101,11 +101,16 @@ category_table(student, cols = c("KR", "CE", "AC"), cats = 1:4)
 You can translate abbreviations used in the marking sheet using `r glossary("list", "lists")` and even change the `symbol` to an emoji.
 
 ```{r}
+# set order and translation of criteria columns
+# exact column header names = names to display in the table
 cols <- list(
   "KR" = "Knowledge and Research",
   "CE" = "Critical Evaluation",
   "AC" = "Academic Communication"
 )
+
+# set order and translation of category labels
+# category values = labels to display in the table
 cats <- list(
   "1" = "Needs Work",
   "2" = "Acceptable",
@@ -113,6 +118,7 @@ cats <- list(
   "4" = "Outstanding"
 )
 
+# create table for this student
 category_table(student, cols, cats, symbol = "✅")
 ```
 
@@ -123,7 +129,7 @@ Once you have your marks and feedback in a table and a template file ready, you 
 Make sure to set the `filename` to something unique for each student. You can use any columns in the marks table as part of the filename. 
 
 ```{r, eval = FALSE}
-tempfile <- system.file("example", "template.Rmd", package = "markr")
+tempfile <- system.file("basic", "template.Rmd", package = "markr")
 
 x <- make_feedback(
   marks = marks, # or path to tabular data

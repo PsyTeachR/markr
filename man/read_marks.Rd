@@ -22,8 +22,8 @@ data table
 Read marks from spreadsheet and/or yaml
 }
 \examples{
-tbl <- system.file("example", "marks.csv", package = "markr")
-yaml <- system.file("example", "fb.yml", package = "markr")
+tbl <- system.file("basic", "marks.csv", package = "markr")
+yaml <- system.file("basic", "fb.yml", package = "markr")
 marks <- read_marks(tbl, yaml, join_by = "ID")
 marks101 <- read_marks(tbl, yaml, join_by = "ID", class = "PSYCH101")
 }

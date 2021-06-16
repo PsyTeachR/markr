@@ -1,7 +1,9 @@
 ---
 title: "Feedback for  `r class_name`"  
 date: "`r format(Sys.time(), '%d %B, %Y')`"  
-output: html_document  
+output: 
+  html_document:
+    df_print: kable
 ---
 
 ```{r setup, include = FALSE}
@@ -45,23 +47,29 @@ As discussed at the start of term, we assess your work according to the course I
 
 ## Your Individual Feedback
 
-```{r creating-feedback-table, results='asis'}
+```{r}
+# set order and translation of criteria columns
+# exact column header names = names to display in the table
 cols <- list(
   "Criteria 1" = "Knowledge and Research",
   "Criteria 2" = "Critical Evaluation",
   "Criteria 3" = "Academic Communication",
-  "LOs" = "Learning Objectives for the Assessment"
-)
-cats <- list(
-  "Excellent" = "**Excellent:** reflect on what went well",
-  "Very Good" = "**Very Good:** can be improved by further refining",
-  "Good" = "**Good:** though still room for further improvement",
-  "Satisfactory" = "**Satisfactory:** ok, but considerable room for improvement",
-  "Weak" = "**Weak:** seek advice on how to improve this area",
-  "Poor" = "**Poor:** seek advice on how to extensively improve this area",
-  "Very Poor" = "**Very Poor:** seek advice on how to extensively improve this area"
+  "LOs"        = "Learning Objectives for the Assessment"
 )
 
+# set order and translation of category labels
+# category values = labels to display in the table
+cats <- list(
+  "Excellent"    = "**Excellent:** reflect on what went well",
+  "Very Good"    = "**Very Good:** can be improved by further refining",
+  "Good"         = "**Good:** though still room for further improvement",
+  "Satisfactory" = "**Satisfactory:** ok, but considerable room for improvement",
+  "Weak"         = "**Weak:** seek advice on how to improve this area",
+  "Poor"         = "**Poor:** seek advice on how to extensively improve this area",
+  "Very Poor"    = "**Very Poor:** seek advice on how to extensively improve this area"
+)
+
+# create table for this student
 category_table(student, cols, cats)
 ```
 
@@ -77,3 +85,9 @@ Overall the class did a very good job in answering this assignment. Here are som
 * Remember that research output is in part a product of the design, so try not to assume one paper as fact.
 * Paragraphs work better when they contain one point addressed in detail. Try to avoid too many superficial ideas all collapsed into one paragraph.
 
+
+```{r, fig.align='right', out.width="25%", fig.alt="#psyTeachR logo in rainbow colours with the words Reproducible and Research after the R"}
+# if the same images are used in many files 
+# it is better to save them and reference like this:
+knitr::include_graphics("https://psyteachr.github.io/images/psyTeachR_logo.png")
+```

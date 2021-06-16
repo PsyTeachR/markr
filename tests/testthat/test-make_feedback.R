@@ -1,6 +1,6 @@
-tbl <- system.file("demo", "marks.csv", package = "markr")
-yaml <- system.file("demo", "fb.yml", package = "markr")
-temp <- system.file("demo", "template.Rmd", package = "markr")
+tbl <- system.file("basic", "marks.csv", package = "markr")
+yaml <- system.file("basic", "fb.yml", package = "markr")
+temp <- system.file("basic", "template.Rmd", package = "markr")
 tdir <- tempdir()
 
 test_that("errors", {
