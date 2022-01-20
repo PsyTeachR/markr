@@ -75,18 +75,17 @@ Each file will have two data objects available to it:
 
 In the most typical case, where each student has one row in the spreadsheet, you can reference the student's data in code `r glossary("chunk", "chunks")` or inline R like this:
 
-<pre>
+```{verbatim}
 ---  
 title: "Feedback"  
-date: &grave;r format(Sys.time(), '%d %B, %Y')`"  
+date: `r format(Sys.time(), '%d %B, %Y')`"  
 output: html_document  
 ---
 
-**Student**: &grave;r student$name`  
-**Marker**: &grave;r student$marker` 
-**Grade**: &grave;r student$grade`
-
-</pre>
+**Student**: `r student$name`  
+**Marker**: `r student$marker` 
+**Grade**: `r student$grade`
+```
 
 ### Category Tables
 

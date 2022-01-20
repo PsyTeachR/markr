@@ -30,6 +30,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -42,18 +44,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">markr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9004</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1.9004</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -75,7 +71,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/psyteachr/markr/">
+  <a href="https://github.com/psyteachr/markr/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -90,14 +86,14 @@
 
       
 
-      </header><script src="example_files/header-attrs-2.8/header-attrs.js"></script><script src="example_files/kePrint-0.0.1/kePrint.js"></script><link href="example_files/lightable-0.0.1/lightable.css" rel="stylesheet">
+      </header><script src="example_files/kePrint-0.0.1/kePrint.js"></script><link href="example_files/lightable-0.0.1/lightable.css" rel="stylesheet">
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Example</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/psyteachr/markr/blob/master/vignettes/example.Rmd"><code>vignettes/example.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/psyteachr/markr/blob/HEAD/vignettes/example.Rmd" class="external-link"><code>vignettes/example.Rmd</code></a></small>
       <div class="hidden name"><code>example.Rmd</code></div>
 
     </div>
@@ -105,40 +101,40 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/psyteachr/markr">markr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span> <span class="co"># for data manipulation</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span> <span class="co"># to customise plots</span></code></pre></div>
-<div id="quickstart-demo" class="section level2">
-<h2 class="hasAnchor">
-<a href="#quickstart-demo" class="anchor"></a>Quickstart Demo</h2>
-<p>Markr has an example marking project that you can use to learn about the package. Run the following code to create a <a class="glossary" target="_blank" title="A collection or “folder” of files on a computer." href="https://psyteachr.github.io/glossary/d#directory">directory</a> called <code>markr_example</code> and open the file <code>demo.Rmd</code>.</p>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/psyteachr/markr" class="external-link">markr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span> <span class="co"># for data manipulation</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span> <span class="co"># to customise plots</span></code></pre></div>
+<div class="section level2">
+<h2 id="quickstart-demo">Quickstart Demo<a class="anchor" aria-label="anchor" href="#quickstart-demo"></a>
+</h2>
+<p>Markr has an example marking project that you can use to learn about the package. Run the following code to create a <a class="external-link glossary" target="_blank" title='A collection or "folder" of files on a computer.' href="https://psyteachr.github.io/glossary/d#directory">directory</a> called <code>markr_example</code> and open the file <code>demo.Rmd</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">markr</span><span class="fu">::</span><span class="fu"><a href="../reference/markr_example.html">markr_example</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div id="open-a-marking-file" class="section level3">
-<h3 class="hasAnchor">
-<a href="#open-a-marking-file" class="anchor"></a>Open a marking file</h3>
-<p>You can open the file <code>marks.csv</code> in Excel, but the code below opens it in R and you can click on the <a class="glossary" target="_blank" title="A word that identifies and stores the value of some data for later use." href="https://psyteachr.github.io/glossary/o#object">object</a> <code>marks</code> in the Environment <a class="glossary" target="_blank" title="RStudio is arranged with four window “panes.”" href="https://psyteachr.github.io/glossary/p#panes">pane</a>. This data table has a column for the student ID, three columns for category marks (KR, CE and AC), a column for the numeric mark, and a column with individual text feedback.</p>
+<div class="section level3">
+<h3 id="open-a-marking-file">Open a marking file<a class="anchor" aria-label="anchor" href="#open-a-marking-file"></a>
+</h3>
+<p>You can open the file <code>marks.csv</code> in Excel, but the code below opens it in R and you can click on the <a class="external-link glossary" target="_blank" title="A word that identifies and stores the value of some data for later use." href="https://psyteachr.github.io/glossary/o#object">object</a> <code>marks</code> in the Environment <a class="external-link glossary" target="_blank" title='RStudio is arranged with four window "panes".' href="https://psyteachr.github.io/glossary/p#panes">pane</a>. This data table has a column for the student ID, three columns for category marks (KR, CE and AC), a column for the numeric mark, and a column with individual text feedback.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">marks</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_marks.html">read_marks</a></span><span class="op">(</span><span class="st">"marks_fb.csv"</span><span class="op">)</span></code></pre></div>
-<pre><code>#&gt;   ID        name  marker question KR CE AC mark       feedback
-#&gt; 1 S1       Mukul Prof. X        A  4  4  4    4 Lorem ipsum...
-#&gt; 2 S2        Kias Prof. X        B  4  3  2    3 Lorem ipsum...
-#&gt; 3 S3       Omair Prof. X        B  4  4  4    4 Lorem ipsum...
-#&gt; 4 S4     Ramesha Prof. X        A  1  2  2    1 Lorem ipsum...
-#&gt; 5 S5 Libby-Marie Prof. X        A  2  3  3    2 Lorem ipsum...</code></pre>
+<pre><code><span class="co">#&gt;   ID        name  marker question KR CE AC mark       feedback</span>
+<span class="co">#&gt; 1 S1       Mukul Prof. X        A  4  4  4    4 Lorem ipsum...</span>
+<span class="co">#&gt; 2 S2        Kias Prof. X        B  4  3  2    3 Lorem ipsum...</span>
+<span class="co">#&gt; 3 S3       Omair Prof. X        B  4  4  4    4 Lorem ipsum...</span>
+<span class="co">#&gt; 4 S4     Ramesha Prof. X        A  1  2  2    1 Lorem ipsum...</span>
+<span class="co">#&gt; 5 S5 Libby-Marie Prof. X        A  2  3  3    2 Lorem ipsum...</span></code></pre>
 </div>
-<div id="data-processing" class="section level3">
-<h3 class="hasAnchor">
-<a href="#data-processing" class="anchor"></a>Data Processing</h3>
+<div class="section level3">
+<h3 id="data-processing">Data Processing<a class="anchor" aria-label="anchor" href="#data-processing"></a>
+</h3>
 <p>Markr has a convenience function for translating between number and letter grades for different purposes, such as numbers for averaging marks and letters for reporting final grades. It defaults to the <code><a href="../reference/glasgow22.html">glasgow22()</a></code> scale, but you can add your own scale.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">scale</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">scale</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
   numbers <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">0</span>,
-  letters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span><span class="op">)</span>
+  letters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"E"</span><span class="op">)</span>
 <span class="op">)</span>
 <span class="va">marks</span><span class="op">$</span><span class="va">grade</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/convert_grades.html">convert_grades</a></span><span class="op">(</span><span class="va">marks</span><span class="op">$</span><span class="va">mark</span>, to <span class="op">=</span> <span class="st">"letters"</span>, <span class="va">scale</span><span class="op">)</span>
 
-<span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">marks</span>, <span class="va">mark</span>, <span class="va">grade</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">marks</span>, <span class="va">mark</span>, <span class="va">grade</span><span class="op">)</span>
 <span class="co">#&gt;   mark grade</span>
 <span class="co">#&gt; 1    4     A</span>
 <span class="co">#&gt; 2    3     B</span>
@@ -146,10 +142,10 @@
 <span class="co">#&gt; 4    1     D</span>
 <span class="co">#&gt; 5    2     C</span></code></pre></div>
 </div>
-<div id="edit-the-template" class="section level3">
-<h3 class="hasAnchor">
-<a href="#edit-the-template" class="anchor"></a>Edit the Template</h3>
-<p>You will need to create a template <a class="glossary" target="_blank" title="The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code." href="https://psyteachr.github.io/glossary/r#r-markdown">R markdown</a> file for individual feedback. You can get a demo template using <strong><code>New File &gt; R Markdown... &gt; From Template</code></strong>.</p>
+<div class="section level3">
+<h3 id="edit-the-template">Edit the Template<a class="anchor" aria-label="anchor" href="#edit-the-template"></a>
+</h3>
+<p>You will need to create a template <a class="external-link glossary" target="_blank" title="The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code." href="https://psyteachr.github.io/glossary/r#r-markdown">R markdown</a> file for individual feedback. You can get a demo template using <strong><code>New File &gt; R Markdown... &gt; From Template</code></strong>.</p>
 <p>Each file will have two data objects available to it:</p>
 <ul>
 <li>
@@ -157,29 +153,26 @@
 <li>
 <code>student</code> (the individual student’s data)</li>
 </ul>
-<p>In the most typical case, where each student has one row in the spreadsheet, you can reference the student’s data in code <a class="glossary" target="_blank" title="A section of code in an R Markdown file" href="https://psyteachr.github.io/glossary/c#chunk">chunks</a> or inline R like this:</p>
-<pre>
----  
-title: "Feedback"  
-date: &amp;grave;r format(Sys.time(), '%d %B, %Y')`"  
-output: html_document  
----
-
-**Student**: &amp;grave;r student$name`  
-**Marker**: &amp;grave;r student$marker` 
-**Grade**: &amp;grave;r student$grade`
-
-</pre>
+<p>In the most typical case, where each student has one row in the spreadsheet, you can reference the student’s data in code <a class="external-link glossary" target="_blank" title="A section of code in an R Markdown file" href="https://psyteachr.github.io/glossary/c#chunk">chunks</a> or inline R like this:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode default"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>---  </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>title: "Feedback"  </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>date: `r format(Sys.time(), '%d %B, %Y')`"  </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>output: html_document  </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>**Student**: `r student$name`  </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>**Marker**: `r student$marker` </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>**Grade**: `r student$grade`</span></code></pre></div>
 </div>
-<div id="category-tables" class="section level3">
-<h3 class="hasAnchor">
-<a href="#category-tables" class="anchor"></a>Category Tables</h3>
+<div class="section level3">
+<h3 id="category-tables">Category Tables<a class="anchor" aria-label="anchor" href="#category-tables"></a>
+</h3>
 <p>You can display a table of marks for specific criteria by specifying the column names (<code>cols</code>) for each criterion and the order that the categories should go in (<code>cats</code>).</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">student</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">marks</span>, <span class="va">ID</span> <span class="op">==</span> <span class="st">"S2"</span><span class="op">)</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">student</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">marks</span>, <span class="va">ID</span> <span class="op">==</span> <span class="st">"S2"</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/category_table.html">category_table</a></span><span class="op">(</span><span class="va">student</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"KR"</span>, <span class="st">"CE"</span>, <span class="st">"AC"</span><span class="op">)</span>, cats <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span></code></pre></div>
-<table class="table table">
+<span class="fu"><a href="../reference/category_table.html">category_table</a></span><span class="op">(</span><span class="va">student</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"KR"</span>, <span class="st">"CE"</span>, <span class="st">"AC"</span><span class="op">)</span>, cats <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span></code></pre></div>
+<table class="table table" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
 Criteria
@@ -242,11 +235,11 @@ AC
 </tr>
 </tbody>
 </table>
-<p>You can translate abbreviations used in the marking sheet using <a class="glossary" target="_blank" title="A container data type that allows items with different data types to be grouped together." href="https://psyteachr.github.io/glossary/l#list">lists</a> and even change the <code>symbol</code> to an emoji.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<p>You can translate abbreviations used in the marking sheet using <a class="external-link glossary" target="_blank" title="A container data type that allows items with different data types to be grouped together." href="https://psyteachr.github.io/glossary/l#list">lists</a> and even change the <code>symbol</code> to an emoji.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># set order and translation of criteria columns</span>
 <span class="co"># exact column header names = names to display in the table</span>
-<span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+<span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
   <span class="st">"KR"</span> <span class="op">=</span> <span class="st">"Knowledge and Research"</span>,
   <span class="st">"CE"</span> <span class="op">=</span> <span class="st">"Critical Evaluation"</span>,
   <span class="st">"AC"</span> <span class="op">=</span> <span class="st">"Academic Communication"</span>
@@ -254,7 +247,7 @@ AC
 
 <span class="co"># set order and translation of category labels</span>
 <span class="co"># category values = labels to display in the table</span>
-<span class="va">cats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+<span class="va">cats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
   <span class="st">"1"</span> <span class="op">=</span> <span class="st">"Needs Work"</span>,
   <span class="st">"2"</span> <span class="op">=</span> <span class="st">"Acceptable"</span>,
   <span class="st">"3"</span> <span class="op">=</span> <span class="st">"Good"</span>,
@@ -263,7 +256,7 @@ AC
 
 <span class="co"># create table for this student</span>
 <span class="fu"><a href="../reference/category_table.html">category_table</a></span><span class="op">(</span><span class="va">student</span>, <span class="va">cols</span>, <span class="va">cats</span>, symbol <span class="op">=</span> <span class="st">"✅"</span><span class="op">)</span></code></pre></div>
-<table class="table table">
+<table class="table table" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
 Criteria
@@ -327,13 +320,13 @@ Academic Communication
 </tbody>
 </table>
 </div>
-<div id="create-feedback" class="section level3">
-<h3 class="hasAnchor">
-<a href="#create-feedback" class="anchor"></a>Create Feedback</h3>
-<p>Once you have your marks and feedback in a table and a template file ready, you can create a feedback document for each student with the <code><a href="../reference/make_feedback.html">make_feedback()</a></code> <a class="glossary" target="_blank" title="A named section of code that can be reused." href="https://psyteachr.github.io/glossary/f#function">function</a>.</p>
+<div class="section level3">
+<h3 id="create-feedback">Create Feedback<a class="anchor" aria-label="anchor" href="#create-feedback"></a>
+</h3>
+<p>Once you have your marks and feedback in a table and a template file ready, you can create a feedback document for each student with the <code><a href="../reference/make_feedback.html">make_feedback()</a></code> <a class="external-link glossary" target="_blank" title="A named section of code that can be reused." href="https://psyteachr.github.io/glossary/f#function">function</a>.</p>
 <p>Make sure to set the <code>filename</code> to something unique for each student. You can use any columns in the marks table as part of the filename.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tempfile</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"basic"</span>, <span class="st">"template.Rmd"</span>, package <span class="op">=</span> <span class="st">"markr"</span><span class="op">)</span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tempfile</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"basic"</span>, <span class="st">"template.Rmd"</span>, package <span class="op">=</span> <span class="st">"markr"</span><span class="op">)</span>
 
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_feedback.html">make_feedback</a></span><span class="op">(</span>
   marks <span class="op">=</span> <span class="va">marks</span>, <span class="co"># or path to tabular data</span>
@@ -342,14 +335,14 @@ Academic Communication
 <span class="op">)</span></code></pre></div>
 </div>
 </div>
-<div id="marking-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#marking-data" class="anchor"></a>Marking Data</h2>
-<p>If you have longer blocks of feedback text, the <a class="glossary" target="_blank" title="A structured format for information" href="https://psyteachr.github.io/glossary/y#yaml">YAML</a> style of marking sheet might work better than spreadsheets. It can be a little tricky to get YAML to parse right, but after you’ve mastered it, it’s an efficient way to store your marking feedback text.</p>
+<div class="section level2">
+<h2 id="marking-data">Marking Data<a class="anchor" aria-label="anchor" href="#marking-data"></a>
+</h2>
+<p>If you have longer blocks of feedback text, the <a class="external-link glossary" target="_blank" title="A structured format for information" href="https://psyteachr.github.io/glossary/y#yaml">YAML</a> style of marking sheet might work better than spreadsheets. It can be a little tricky to get YAML to parse right, but after you’ve mastered it, it’s an efficient way to store your marking feedback text.</p>
 <p>You can include all of the columns or just the student ID and feedback, then join this to the spreadsheet table.</p>
-<div id="all-data-in-yaml" class="section level3">
-<h3 class="hasAnchor">
-<a href="#all-data-in-yaml" class="anchor"></a>All data in YAML</h3>
+<div class="section level3">
+<h3 id="all-data-in-yaml">All data in YAML<a class="anchor" aria-label="anchor" href="#all-data-in-yaml"></a>
+</h3>
 <pre><code>- ID: S10
   name: Helena
   marker: Lisa
@@ -364,18 +357,18 @@ Academic Communication
 
     * item 1
     * item 2</code></pre>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># all data in one YAML file</span>
 <span class="va">marks</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_marks.html">read_marks</a></span><span class="op">(</span>yaml <span class="op">=</span> <span class="st">"marks_fb.yml"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="convert-table-to-yaml" class="section level3">
-<h3 class="hasAnchor">
-<a href="#convert-table-to-yaml" class="anchor"></a>Convert table to YAML</h3>
-<p>If you have <a class="glossary" target="_blank" title="Data in a rectangular table format, where each row has an entry for each column." href="https://psyteachr.github.io/glossary/t#tabular-data">tabular data</a> and want to convert it to YAML, use the function <code><a href="../reference/tbl2yaml.html">tbl2yaml()</a></code>. You can add extra columns (or overwrite existing columns). Add a <code>filename</code> to save to file.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="section level3">
+<h3 id="convert-table-to-yaml">Convert table to YAML<a class="anchor" aria-label="anchor" href="#convert-table-to-yaml"></a>
+</h3>
+<p>If you have <a class="external-link glossary" target="_blank" title="Data in a rectangular table format, where each row has an entry for each column." href="https://psyteachr.github.io/glossary/t#tabular-data">tabular data</a> and want to convert it to YAML, use the function <code><a href="../reference/tbl2yaml.html">tbl2yaml()</a></code>. You can add extra columns (or overwrite existing columns). Add a <code>filename</code> to save to file.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/tbl2yaml.html">tbl2yaml</a></span><span class="op">(</span><span class="va">marks</span>, filename <span class="op">=</span> <span class="st">"demo.yml"</span>, marker <span class="op">=</span> <span class="st">"Lisa"</span><span class="op">)</span></code></pre></div>
 <p>If you just have a list of IDs and want to create a YAML file for feedback, you can set it up without a pre-existing table. Use <code>"...\n"</code> to insert a place-holder for multi-line info, such as feedback paragraphs</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/tbl2yaml.html">tbl2yaml</a></span><span class="op">(</span>ID <span class="op">=</span> <span class="va">marks</span><span class="op">$</span><span class="va">ID</span>, feedback <span class="op">=</span> <span class="st">"...\n"</span><span class="op">)</span></code></pre></div>
 <pre><code>
 - ID: S1
@@ -395,36 +388,36 @@ Academic Communication
     ...
 </code></pre>
 </div>
-<div id="data-in-both-formats" class="section level3">
-<h3 class="hasAnchor">
-<a href="#data-in-both-formats" class="anchor"></a>Data in both formats</h3>
+<div class="section level3">
+<h3 id="data-in-both-formats">Data in both formats<a class="anchor" aria-label="anchor" href="#data-in-both-formats"></a>
+</h3>
 <p>You can just use YAML for paragraphs of text and put all other data in a table. Set up the YAML file with corresponding ID columns to join rows.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">marks</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_marks.html">read_marks</a></span><span class="op">(</span>tbl <span class="op">=</span> <span class="st">"marks.csv"</span>,
                     yaml <span class="op">=</span> <span class="st">"fb.yml"</span>, 
                     join_by <span class="op">=</span> <span class="st">"ID"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
-<div id="summary-plots" class="section level2">
-<h2 class="hasAnchor">
-<a href="#summary-plots" class="anchor"></a>Summary Plots</h2>
+<div class="section level2">
+<h2 id="summary-plots">Summary Plots<a class="anchor" aria-label="anchor" href="#summary-plots"></a>
+</h2>
 <p>You can display a summary plot of the marks in the student feedback or for your own purposes.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/mark_dist.html">mark_dist</a></span><span class="op">(</span><span class="va">marks</span>, <span class="st">"mark"</span>, scale <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></code></pre></div>
 <p><img src="example_files/figure-html/mark-dist-plot-1-1.png" title="Bar plot of the mark distribution. The N's for the scores 0-5 are 0=0, 1=1, 2=1, 3=1, 4=2, 5=0" alt="Bar plot of the mark distribution. The N's for the scores 0-5 are 0=0, 1=1, 2=1, 3=1, 4=2, 5=0" width="100%"></p>
-<div id="faceted-plots" class="section level3">
-<h3 class="hasAnchor">
-<a href="#faceted-plots" class="anchor"></a>Faceted plots</h3>
+<div class="section level3">
+<h3 id="faceted-plots">Faceted plots<a class="anchor" aria-label="anchor" href="#faceted-plots"></a>
+</h3>
 <p>Here we’ve made a new <code>marks</code> table with 100 students. Each student answered one of three questions, indicated by the <code>questions</code> column.</p>
-<pre><code>#&gt;   ID question KR CE AC mark letter grade_band
-#&gt; 1  1        3  2  2  3   16     B2          B
-#&gt; 2  2        1  2  1  2   14     C1          C
-#&gt; 3  3        3  2  2  3   14     C1          C
-#&gt; 4  4        3  4  3  4   13     C2          C
-#&gt; 5  5        3  4  2  3   14     C1          C
-#&gt; 6  6        1  2  3  1   16     B2          B</code></pre>
-<p>You can plot the letter grade by question using the following code. To get the letters to display in the right order, we set the <code>scale</code> <a class="glossary" target="_blank" title="A variable that provides input to a function." href="https://psyteachr.github.io/glossary/a#argument">argument</a> to the categories in the order we want to show them. The Glasgow 22-point scale has 4 categories we don’t want to show on this plot, so you can quickly get the values we do want using the code <code>glasgow22()$letters[5:26]</code>, or you can manually create a <a class="glossary" target="_blank" title="A type of data structure that is basically a list of things like T/F values, numbers, or strings." href="https://psyteachr.github.io/glossary/v#vector">vector</a> with the scale order like <code><a href="https://rdrr.io/r/base/c.html">c("G2", "G1", "F3", ..., "A1")</a></code>.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<pre><code><span class="co">#&gt;   ID question KR CE AC mark letter grade_band</span>
+<span class="co">#&gt; 1  1        2  2  4  1   16     B2          B</span>
+<span class="co">#&gt; 2  2        1  2  1  1   16     B2          B</span>
+<span class="co">#&gt; 3  3        3  2  1  3   18     A5          A</span>
+<span class="co">#&gt; 4  4        2  1  4  4   16     B2          B</span>
+<span class="co">#&gt; 5  5        1  1  2  3   18     A5          A</span>
+<span class="co">#&gt; 6  6        3  1  3  3   13     C2          C</span></code></pre>
+<p>You can plot the letter grade by question using the following code. To get the letters to display in the right order, we set the <code>scale</code> <a class="external-link glossary" target="_blank" title="A variable that provides input to a function." href="https://psyteachr.github.io/glossary/a#argument">argument</a> to the categories in the order we want to show them. The Glasgow 22-point scale has 4 categories we don’t want to show on this plot, so you can quickly get the values we do want using the code <code>glasgow22()$letters[5:26]</code>, or you can manually create a <a class="external-link glossary" target="_blank" title="A type of data structure that collects values with the same data type, like T/F values, numbers, or strings." href="https://psyteachr.github.io/glossary/v#vector">vector</a> with the scale order like <code>c("G2", "G1", "F3", ..., "A1")</code>.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/mark_dist.html">mark_dist</a></span><span class="op">(</span><span class="va">marks</span>, 
           mark_col <span class="op">=</span> <span class="st">"letter"</span>, 
           fill_col <span class="op">=</span> <span class="st">"grade_band"</span>,
@@ -432,30 +425,30 @@ Academic Communication
           scale <span class="op">=</span> <span class="fu"><a href="../reference/glasgow22.html">glasgow22</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">letters</span><span class="op">[</span><span class="fl">5</span><span class="op">:</span><span class="fl">26</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <p><img src="example_files/figure-html/mark-dist-by-q-plot-1.png" title="Plot of the mark distribution separated by question" alt="Plot of the mark distribution separated by question" width="100%"></p>
 </div>
-<div id="category-plots" class="section level3">
-<h3 class="hasAnchor">
-<a href="#category-plots" class="anchor"></a>Category plots</h3>
+<div class="section level3">
+<h3 id="category-plots">Category plots<a class="anchor" aria-label="anchor" href="#category-plots"></a>
+</h3>
 <p>This marking table has three columns that show individual marking criteria: <code>KR</code>, <code>CE</code> and <code>AC</code>, so we could also make a plot of the individual criteria by question. This function uses the <code>cols</code> and <code>cats</code> lists we made above to translate the abbreviations in the marking table to the full terms in the plot.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cat_dist.html">cat_dist</a></span><span class="op">(</span><span class="va">marks</span>, <span class="va">cols</span>, <span class="va">cats</span>, facet_by <span class="op">=</span> <span class="st">"question"</span><span class="op">)</span></code></pre></div>
 <p><img src="example_files/figure-html/cat-dist-plot-1.png" title="Plot of the distribution of the individual criteria for each question." alt="Plot of the distribution of the individual criteria for each question." width="100%"></p>
 </div>
-<div id="category-histograms" class="section level3">
-<h3 class="hasAnchor">
-<a href="#category-histograms" class="anchor"></a>Category histograms</h3>
+<div class="section level3">
+<h3 id="category-histograms">Category histograms<a class="anchor" aria-label="anchor" href="#category-histograms"></a>
+</h3>
 <p>The default category plots are stacked bar plots. Set <code>xaxis = "cat"</code> to display the categories across the x-axis instead. The output is a ggplot object, so you can add further ggplot functions to customise your plots.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/cat_dist.html">cat_dist</a></span><span class="op">(</span><span class="va">marks</span>, <span class="va">cols</span>, <span class="va">cats</span>, xaxis <span class="op">=</span> <span class="st">"cat"</span>,
          facet_by <span class="op">=</span> <span class="st">"question"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"firebrick"</span>, <span class="st">"sienna"</span>, <span class="st">"goldenrod"</span>, <span class="st">"darkgreen"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>strip.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">12</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"firebrick"</span>, <span class="st">"sienna"</span>, <span class="st">"goldenrod"</span>, <span class="st">"darkgreen"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/theme.html" class="external-link">theme</a></span><span class="op">(</span>strip.text.x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">12</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="example_files/figure-html/cat-dist-x-plot-1.png" title="Plot of the distribution of the individual criteria for each question with a red, ornage and yellow colour scheme." alt="Plot of the distribution of the individual criteria for each question with a red, ornage and yellow colour scheme." width="100%"></p>
 </div>
 </div>
-<div id="glossary" class="section level2">
-<h2 class="hasAnchor">
-<a href="#glossary" class="anchor"></a>Glossary</h2>
+<div class="section level2">
+<h2 id="glossary">Glossary<a class="anchor" aria-label="anchor" href="#glossary"></a>
+</h2>
 <table class="table">
 <thead><tr>
 <th style="text-align:left;">
@@ -468,7 +461,7 @@ definition
 <tbody>
 <tr>
 <td style="text-align:left;">
-<a class="glossary" target="_blank" href="https://psyteachr.github.io/glossary/a#argument">argument</a>
+<a href="https://psyteachr.github.io/glossary/a.html#argument" class="external-link glossary" target="_blank">argument</a>
 </td>
 <td style="text-align:left;">
 A variable that provides input to a function.
@@ -476,7 +469,7 @@ A variable that provides input to a function.
 </tr>
 <tr>
 <td style="text-align:left;">
-<a class="glossary" target="_blank" href="https://psyteachr.github.io/glossary/c#chunk">chunk</a>
+<a href="https://psyteachr.github.io/glossary/c.html#chunk" class="external-link glossary" target="_blank">chunk</a>
 </td>
 <td style="text-align:left;">
 A section of code in an R Markdown file
@@ -484,7 +477,7 @@ A section of code in an R Markdown file
 </tr>
 <tr>
 <td style="text-align:left;">
-<a class="glossary" target="_blank" href="https://psyteachr.github.io/glossary/d#directory">directory</a>
+<a href="https://psyteachr.github.io/glossary/d.html#directory" class="external-link glossary" target="_blank">directory</a>
 </td>
 <td style="text-align:left;">
 A collection or “folder” of files on a computer.
@@ -492,7 +485,7 @@ A collection or “folder” of files on a computer.
 </tr>
 <tr>
 <td style="text-align:left;">
-<a class="glossary" target="_blank" href="https://psyteachr.github.io/glossary/f#function">function</a>
+<a href="https://psyteachr.github.io/glossary/f.html#function" class="external-link glossary" target="_blank">function</a>
 </td>
 <td style="text-align:left;">
 A named section of code that can be reused.
@@ -500,7 +493,7 @@ A named section of code that can be reused.
 </tr>
 <tr>
 <td style="text-align:left;">
-<a class="glossary" target="_blank" href="https://psyteachr.github.io/glossary/l#list">list</a>
+<a href="https://psyteachr.github.io/glossary/l.html#list" class="external-link glossary" target="_blank">list</a>
 </td>
 <td style="text-align:left;">
 A container data type that allows items with different data types to be grouped together.
@@ -508,7 +501,7 @@ A container data type that allows items with different data types to be grouped 
 </tr>
 <tr>
 <td style="text-align:left;">
-<a class="glossary" target="_blank" href="https://psyteachr.github.io/glossary/o#object">object</a>
+<a href="https://psyteachr.github.io/glossary/o.html#object" class="external-link glossary" target="_blank">object</a>
 </td>
 <td style="text-align:left;">
 A word that identifies and stores the value of some data for later use.
@@ -516,15 +509,15 @@ A word that identifies and stores the value of some data for later use.
 </tr>
 <tr>
 <td style="text-align:left;">
-<a class="glossary" target="_blank" href="https://psyteachr.github.io/glossary/p#panes">panes</a>
+<a href="https://psyteachr.github.io/glossary/p.html#panes" class="external-link glossary" target="_blank">panes</a>
 </td>
 <td style="text-align:left;">
-RStudio is arranged with four window “panes.”
+RStudio is arranged with four window “panes”.
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<a class="glossary" target="_blank" href="https://psyteachr.github.io/glossary/r#r-markdown">r-markdown</a>
+<a href="https://psyteachr.github.io/glossary/r.html#r-markdown" class="external-link glossary" target="_blank">r markdown</a>
 </td>
 <td style="text-align:left;">
 The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.
@@ -532,7 +525,7 @@ The R-specific version of markdown: a way to specify formatting, such as headers
 </tr>
 <tr>
 <td style="text-align:left;">
-<a class="glossary" target="_blank" href="https://psyteachr.github.io/glossary/t#tabular-data">tabular-data</a>
+<a href="https://psyteachr.github.io/glossary/t.html#tabular-data" class="external-link glossary" target="_blank">tabular data</a>
 </td>
 <td style="text-align:left;">
 Data in a rectangular table format, where each row has an entry for each column.
@@ -540,15 +533,15 @@ Data in a rectangular table format, where each row has an entry for each column.
 </tr>
 <tr>
 <td style="text-align:left;">
-<a class="glossary" target="_blank" href="https://psyteachr.github.io/glossary/v#vector">vector</a>
+<a href="https://psyteachr.github.io/glossary/v.html#vector" class="external-link glossary" target="_blank">vector</a>
 </td>
 <td style="text-align:left;">
-A type of data structure that is basically a list of things like T/F values, numbers, or strings.
+A type of data structure that collects values with the same data type, like T/F values, numbers, or strings.
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-<a class="glossary" target="_blank" href="https://psyteachr.github.io/glossary/y#yaml">yaml</a>
+<a href="https://psyteachr.github.io/glossary/y.html#yaml" class="external-link glossary" target="_blank">yaml</a>
 </td>
 <td style="text-align:left;">
 A structured format for information
@@ -570,11 +563,13 @@ A structured format for information
 
 
       <footer><div class="copyright">
-  <p>Developed by Lisa DeBruine.</p>
+  <p></p>
+<p>Developed by Lisa DeBruine.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -582,6 +577,8 @@ A structured format for information
 
   
 
+
+  
 
   </body>
 </html>
